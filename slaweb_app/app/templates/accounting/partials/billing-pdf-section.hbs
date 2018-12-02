@@ -1,0 +1,37 @@
+            <div id="pdf-section">
+                {{#if isAdmin}}
+                    {{#if email_failed}}
+                        <div class="send-error">
+                            <span class="text-icon icon-16-left icon-error">&nbsp;&nbsp;An error has occurred with sending Invocie !</span>
+                            <span>&nbsp;&nbsp;Please try again or check SMTP service !</span>
+                        </div>
+                    {{/if}}
+                    {{#if email_sended}}
+                        <div class="send-success">
+                            <span class="text-icon icon-16-left icon-info">&nbsp;&nbsp;Email was successfully sent !</span>
+                        </div>
+                        <br>
+                    {{/if}}
+                    {{#if sending_started}}
+                         <div class="send-wait">
+                             <span class="text-icon icon-16-left icon-info">&nbsp;&nbsp;Please wait !</span>
+                         </div>
+                    {{else}}
+                        {{#if pdf_buttons_enable}}
+                        <div id="send-email">
+                            {{input type="checkbox" name="Use specific email account" checked=email_checked}} Use specific email account{{#unless email_input_hidden}}: {{input value=email}}{{/unless}}
+                            <button id="send-bill-button" {{action "send_bill"}}> Send invoice </button>
+                            <button id="generate-bill-button" {{action "generate_bill"}}> Download invoice </button>
+                            <br>
+                            <div id="email-desc"><span class="volumeDesc">* Invoice will send on default login email !</span></div>
+                        </div>
+                        {{/if}}
+                    {{/if}}
+                {{else}}
+                    {{#unless pdf_button_elsewhere}}
+                        <div id="send-email">
+                            <button  id="generate-bill-button" {{action "generate_bill"}}> Download invoice </button>
+                        </div>
+                    {{/unless}}
+                {{/if}}
+            </div>

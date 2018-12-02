@@ -1,0 +1,67 @@
+.navlist
+    @extend %list-reset
+    line-height: inherit
+    font-weight: 300
+.navlist-item
+    line-height: inherit
+.navlist-item-target
+    line-height: inherit
+    padding: 0 0.8rem
+    display: block
+    background-clip: padding-box
+
+.horizontal-navlist
+    @extend .navlist
+    @include inline-block-nospace-container(".navlist-item")
+    > .navlist-item ~ .navlist-item
+        margin-left: 0.1rem
+
+.main-nav
+    margin-left: $sidebar-width + $gutter-full
+    height: $headerbar-height
+    line-height: $headerbar-height
+    .navlist-item
+        @extend %width-min-content
+        font-size: $fontsize-big
+        max-width: 18rem
+    .navlist-item-target
+        padding: 0 1.6rem
+        &:hover, &.is-active
+            background: $image-bg-pattern-midgreen $midgreen
+            color: $white
+        > .text-icon
+            vertical-align: middle
+
+.sections-nav
+    padding-left: $sidebar-width + $gutter-full
+    .navlist-item
+        vertical-align: middle
+        color: $white
+    .navlist-item-target
+        &:hover, &.is-active
+            background: $image-bg-pattern-lightgreen $lightgreen
+            color: $black
+
+// navigation showing when scrolled pass header
+.scrolled-main-nav
+    height: $topbar-height
+    line-height: $topbar-height
+    float: left
+    color: $lightgreen
+    .navlist-item-target
+        padding: 0 0.8rem
+        &:hover, &.is-active
+            background: $image-bg-pattern-midgreen $midgreen
+            color: $white
+        > .icon-16
+            vertical-align: text-top
+
+.left-panel
+    float: left
+    text-align: center
+    width: 50%
+
+.right-panel
+    @extend .left-panel
+    float: right
+

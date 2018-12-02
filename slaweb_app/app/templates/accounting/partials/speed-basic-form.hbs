@@ -1,0 +1,135 @@
+                <tr class="basic-tr">
+                    <td class="column-label-basic-vol">
+                        <span>Base Speed&nbsp;:&nbsp;</span>
+                    </td>
+
+                    <td class="column-value">
+                            {{input type="text" value=base_speed  size="40" maxlength="18" placeholder="for example: 10000000" }}
+                            {{view "select" content=base_speed_select optionValuePath="content.val" optionLabelPath="content.label" value=base_speed_unit}}
+                    </td>
+
+                    <td class="column-error">
+                        {{#if baseSpeedError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input !</span>{{else}} <span class="form-info"> </span>{{/if}}
+                    </td>
+                </tr>
+
+                <tr class="basic-tr">
+                    <td class="column-label-basic-vol">
+                        <span>Base Cost&nbsp;:&nbsp;</span>
+                    </td>
+
+                    <td class="column-value">
+                            {{input type="text" value=base_speed_cost size="50" maxlength="8" placeholder="for example: 5.23" }}
+                    </td>
+
+
+                    <td class="column-error">
+                        {{#if baseSpeedCostError}}
+                            <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input !</span>
+                        {{else}}
+                            {{# if base_speed_cost}}
+                                    {{#if base_speed}}
+                                        {{#unless baseSpeedError}}
+                            <span class="form-info"> {{base_speed_cost}} EUR for first {{as-bps-data base_speed input_unit=base_speed_unit}} </span>
+                                        {{/unless}}
+                                    {{/if}}
+                                {{/if}}
+                        {{/if}}
+                    </td>
+                </tr>
+
+
+                <tr class="basic-tr">
+                    <td class="column-label-basic-vol">
+                        <span>Additional Speed&nbsp;:&nbsp;</span>
+                    </td>
+
+                    <td class="column-value">
+                            {{input type="text" value=additional_speed  size="40" maxlength="18" placeholder="for example: 10000000" }}
+                            {{view "select" content=base_speed_select optionValuePath="content.val" optionLabelPath="content.label" value=additional_speed_unit}}
+                    </td>
+
+                    <td class="column-error">
+                        {{#if additionalSpeedError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input !</span>{{else}}<span class="form-info">  (Optional) </span>{{/if}}
+                    </td>
+                </tr>
+
+                <tr class="basic-tr">
+                    <td class="column-label-basic-vol">
+                        <span>Additional Cost&nbsp;:&nbsp;</span>
+                    </td>
+
+                    <td class="column-value">
+                            {{input type="text" value=additional_speed_cost size="50" maxlength="8" placeholder="for example: 5.23" }}
+                    </td>
+
+                    <td class="column-error">
+                        {{#if additionalSpeedCostError}}
+                            <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input !</span>
+                        {{else}}
+                                {{# if additional_speed_cost}}
+                                    {{#if additional_speed}}
+                                        {{#unless additionalSpeedError}}
+                                    <span class="form-info"> {{additional_speed_cost}} EUR for every next {{as-bps-data additional_speed input_unit=additional_speed_unit}} </span>
+                                        {{/unless}}
+                                    {{/if}}
+                                {{/if}}
+                        {{/if}}
+                    </td>
+                </tr>
+
+               <tr class="basic-tr">
+                                <td class="column-label-basic-vol">
+                                    <span>Calculation type&nbsp;:</span>
+                                </td>
+
+                                <td class="column-value">
+                                        {{view "select" content=calcSpeedTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentSpeedCalcType}}
+                                </td>
+
+                            </tr>
+                            <tr><td></td>
+                                <td>
+                                    <div class="volumeDesc">{{desc_speed}}</div>
+                                </td>
+                                <td></td>
+                            </tr>
+                {{#if basic_interval}}
+                            <tr class="basic-tr">
+                                <td class="column-label-basic-vol">
+                                    <span>Time interval&nbsp;:</span>
+                                </td>
+
+                                <td class="column-value">
+                                    {{view "select" content=calcIntervalSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentCalcInterval}}
+                                </td>
+
+                            </tr>
+                                        {{#if show_calendar}}
+
+                            <tr class="basic-tr">
+                                <td class="column-label-basic-vol">
+                                </td>
+
+                                <td class="column-value">
+
+                                    <div class="calendars">
+                                         <label>From&nbsp;:&nbsp;{{date-time-input time=startTime}}</label>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr class="basic-tr">
+                                <td class="column-label-basic-vol">
+                                </td>
+
+                                <td class="column-value">
+
+                                    <div class="calendars">
+                                         <label>To&nbsp;:&nbsp;{{date-time-input time=endTime}}</label>
+                                    </div>
+                                </td>
+
+                            </tr>
+                             {{/if}}
+                {{/if}}

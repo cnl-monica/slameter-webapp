@@ -1,0 +1,36 @@
+                <tr>
+                    <td>
+                    </td>
+
+                    <td>
+                        <label>{{input type="checkbox" name="two_tariff" checked=two_tariff}}Include Double Time Tariff</label>
+                    </td>
+                    <td class="column-error">
+                    </td>
+                </tr>
+
+                {{#if two_tariff}}
+                 <tr>
+                    <td class="column-label">
+                        <span>From&nbsp;:</span>
+                    <td class="column-value">
+                        {{view "select"content=hourSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentFromHour}}
+                        &nbsp;Hour
+
+                    </td>
+                     <td class="column-error">
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="column-label">
+                        <span>To&nbsp;:</span>
+                    <td class="column-value">
+
+                        {{view "select" content=hourSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentToHour}}
+                        &nbsp;Hour
+
+                    </td>
+                     <td class="column-error">
+                    </td>
+                </tr>
+                {{/if}}

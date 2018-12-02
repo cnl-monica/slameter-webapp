@@ -1,0 +1,41 @@
+<header class="sidebar-nav-header">
+    <h3>{{#if accounting}}Accounting {{/if}}Clients</h3>
+
+</header>
+<div {{bind-attr class=":nav-tool-container isAnyToolOpened:is-expanded"}}>
+    <form class="tool">
+        <div class="tool-content-with-margin">
+            {{iconed-formfield type="search" icon="search" placeholder="search" value=searchedValue}}
+        </div>
+    </form>
+</div>
+<ul class="navlist">
+    {{#unless accounting}}
+        <li class="navlist-item">
+            <span class="client-name">
+                {{#link-to (query-params accuser='all')  class="navlist-item-target"}}
+                    <span id="all_clients" class="client-name">All Clients</span>
+                {{/link-to}}
+            </span>
+        </li>
+    {{/unless}}
+  {{#unless content.isLoading}}
+        {{#each accuser in filteredContent}}
+            <li class="navlist-item">
+                {{#if accounting}}
+                    {{#link-to (query-params accuser=accuser.id action="list" criteria='0')  class="navlist-item-target"}}
+                        {{partial 'accounting/partials/accounting-client-info'}}
+                    {{/link-to}}
+                {{else}}
+                     {{#link-to (query-params accuser=accuser.id)  class="navlist-item-target"}}
+                        {{partial 'accounting/partials/accounting-client-info'}}
+                    {{/link-to}}
+                {{/if}}
+            </li>
+            {{else}}
+                <div style="line-height: 2.4rem; text-align: center;">No accounting clients</div>
+        {{/each}}
+        {{else}}
+            <div style="line-height: 2.4rem; text-align: center;">loading ...</div>
+    {{/unless}}
+</ul>

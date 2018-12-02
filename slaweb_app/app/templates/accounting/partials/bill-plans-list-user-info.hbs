@@ -1,0 +1,51 @@
+                 <table class="bill-info-table" align="center">
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td class="bill-info-table-value">: {{plan._data.user._data.name}}</td>
+                            </tr>
+                            {{#if isProvider}}
+                            <tr>
+                                <td>Organization</td>
+                                <td class="bill-info-table-value">: {{plan._data.user._data.organization}}</td>
+                            </tr>
+                            {{/if}}
+                            <tr>
+                                <td>Email</td>
+                                <td class="bill-info-table-value">: {{plan._data.user._data.email}}</td>
+                            </tr>
+                            {{#if plan._data.user._data.ip_addresses}}
+                            <tr>
+                                <td class="address-td-label">IP Adresses</td>
+                                <td class="bill-info-table-value">
+                                    <table class="clients-address">
+                                        <thead></thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>: </td><td>{{split-string plan._data.user._data.ip_addresses splitter=';'}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            {{/if}}
+                            {{#if plan._data.user._data.mac_addresses}}
+                            <tr>
+                                <td class="address-td-label">MAC Adresses</td>
+                                <td class="bill-info-table-value">
+                                    <table class="clients-address">
+                                        <thead></thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>: </td><td>{{split-string plan._data.user._data.mac_addresses splitter=';'}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            {{/if}}
+                        </tbody>
+                    </table>

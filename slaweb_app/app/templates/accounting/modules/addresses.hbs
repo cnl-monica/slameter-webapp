@@ -1,0 +1,37 @@
+{{#if showed}}
+<header class="sidebar-nav-header">
+    <h3>Client IP & MAC Addresses</h3>
+
+</header>
+<div {{bind-attr class=":nav-tool-container isAnyToolOpened:is-expanded"}}>
+    <form class="tool">
+        <div class="tool-content-with-margin">
+            {{iconed-formfield type="search" icon="search" placeholder="search" value=searchedValue}}
+        </div>
+    </form>
+</div>
+<ul class="navlist address_list">
+            <li class="navlist-item">
+                <div>
+                    <table class="clients-address">
+            {{#if model.ip_addresses}}
+                      <tr>
+                        <td>IP Addresses:</td>
+                        <td class="address-td">
+                                {{split-string model.ip_addresses splitter=';'}}
+                        </td>
+                      </tr>
+            {{/if}}
+            {{#if model.mac_addresses}}
+                      <tr>
+                        <td>MAC Addresses:</td>
+                        <td  class="address-td">
+                                {{split-string model.mac_addresses splitter=';'}}
+                        </td>
+                      </tr>
+            {{/if}}
+                    </table>
+                </div>
+            </li>
+</ul>
+{{/if}}

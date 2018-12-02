@@ -1,0 +1,67 @@
+        {{partial 'accounting/partials/billing-client-info'}}
+                <p class="big-text2">Time Period:</p>
+        <div class="bill-info-section">
+            <div class="wrapper"><div class="static" ><p class="atribute-text">From: - To:</p></div><div class="texts"><p class="atribute2-text">
+                    {{ timeFrom }} - {{ timeTo }}
+            </p></div></div>
+        </div>
+            {{#if two_tariff }}
+            <p class="big-text">Two Time Tariff:</p>
+            <div class="bill-info-section">
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">1st StrongTrafficHours Tariff</p></div><div class="texts"><p class="atribute2-text">{{ fstTimeTariff }} </p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">2snd WeakTrafficHours Tariff</p></div><div class="texts"><p class="atribute2-text">{{ sndTimeTariff }}</p></div></div>
+            </div>
+            {{/if }}
+        <div class="content">
+            <p class="big-text">Evaluation Results:</p>
+            <table class="bill-table" data-selection="2">
+                <thead>
+
+
+                        <th>Criterium ID</th>
+                        {{# if two_tariff }}
+                        <th>Data for ST tariff</th>
+                        <th>Data for WT tariff</th>
+                        <th>Strong Traffic Tariff</th>
+                        <th>Weak Traffic Tariff</th>
+                        {{ else }}
+                        <th>Data</th>
+                        <th>Tariff</th>
+                        {{/if}}
+                        <th>Cost For Criterium</th>
+
+                </thead>
+                <tbody>
+                    {{#each billrow in billingtabledata }}
+                        <tr>
+                            <td style="font-weight: bold!important">{{ billrow.criterium_id }}</td>
+                            {{#if two_tariff }}
+                                <td>{{ as-data billrow.data_st_rate }}</td>
+                                <td>{{ as-data billrow.data_wt_rate }}</td>
+                                <td>{{ billrow.st_rate}} Eur for {{as-data billrow.st_rate_data_unit}}</td>
+                                <td>{{ billrow.wt_rate }} Eur for {{as-data billrow.wt_rate_data_unit}}</td>
+                            {{ else }}
+                                <td>{{ as-data billrow.data_st_rate }}</td>
+                                <td>{{ billrow.st_rate}} Eur for {{as-data billrow.st_rate_data_unit}}</td>
+                            {{/if }}
+                            <td style="font-weight: bold!important">{{ billrow.sum }} €</td>
+
+                        </tr>
+                    {{/each}}
+
+                    <tr>
+
+                        {{# if two_tariff }}
+                        <td colspan="5" style="font-weight:bolder!important">Total Cost</td>
+                        {{ else }}
+                        <td colspan="3" style="font-weight: bold;!important">Total Cost</td>
+                        {{/if}}
+                        <td colspan="1" style="font-weight: bold;!important">{{ total_sum }} €</td>
+
+                    </tr>
+
+                </tbody>
+
+
+            </table>
+        </div>

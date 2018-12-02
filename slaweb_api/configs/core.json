@@ -1,0 +1,10 @@
+{
+    "common": {
+        "providerBranding": {
+            "name": "ISP",
+            "url": "http://www.some-provider-url.com",
+            "iconClass": "icon-office"
+
+        }
+    }
+}

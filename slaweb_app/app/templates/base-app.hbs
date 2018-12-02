@@ -1,0 +1,20 @@
+{{view 'utilbar' class='l-utilbar'}}
+
+<div class="l-content-wrapper l-constrained">
+{{!
+    sidebars must be listed in this order (first right, then left),
+    to be able to place righ sidebar above left one on smaller screens
+    (see styles/layout.sass file)
+}}
+    <aside class="l-right-sidebar">
+        {{outlet rightSidebar}}
+    </aside>
+
+    <aside class="l-left-sidebar">
+        {{outlet leftSidebar}}
+    </aside>
+
+    <div class="l-main">
+        {{outlet}}
+    </div>
+</div>

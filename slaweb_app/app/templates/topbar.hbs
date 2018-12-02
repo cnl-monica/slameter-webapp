@@ -1,0 +1,77 @@
+<div class="l-constrained">
+    <div class="provider-branding">
+        {{#with siteConfig.providerBranding}}
+            <a {{bind-attr href=url}} class="branding-header" target="_blank">
+                <span {{bind-attr class=":text-icon :icon-16-left iconClass"}}>{{name}}</span>
+            </a>
+        {{/with}}
+    </div>
+    <ul class="scrolled-main-nav horizontal-navlist is-hidden">
+        {{#each apps}}
+            <li class="navlist-item">
+                {{#link-to this.name class="navlist-item-target tooltip" title=title}}
+                    <i {{bind-attr class=":icon-16 config.iconClass"}}></i>
+                {{/link-to}}
+            </li>
+        {{/each}}
+        <li class="navlist-item">
+            {{#link-to 'about' class="navlist-item-target tooltip" title='About'}}
+                <i class="icon-16 icon-info"></i>
+            {{/link-to}}
+        </li>
+    </ul>
+    <ul class="main-menu horizontal-menu">
+        {{#dropdown-menu class="menu-item" theme="dropdown-theme-topbar" position="bottom-left"}}
+            <a class="menu-item-target dropdown-trigger">
+                <span class="text-icon icon-16-left icon-bubbles-4">Language</span>
+            </a>
+            <ul>
+                {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                    <li class="menu-item">
+                        <a class="menu-item-target" href="#" {{action "setLang" "en" target=target}}>
+                            <span class="text-icon icon-16-left icon-flag-us">English</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-item-target" href="#" {{action "setLang" "sk" target=target}}>
+                            <span class="text-icon icon-16-left icon-flag-sk">Slovak</span>
+                        </a>
+                    </li>
+                {{/view}}
+            </ul>
+        {{/dropdown-menu}}
+        {{#if session.isAuthenticated}}
+        {{!--    <li class="menu-item">
+                <a class="menu-item-target" href="#">
+                    <span class="text-icon icon-16-left icon-cog-2">Settings</span>
+                </a>
+            </li> --}}
+            {{#dropdown-menu class="menu-item" theme="dropdown-theme-topbar" position="bottom-left"}}
+                <span class="menu-item-target dropdown-trigger">
+                    <span class="text-icon icon-16-left icon-user">{{session.user.email}}</span>
+                </span>
+                <ul> {{!-- ul tag must be here to produce valid html (but why ... ?) // because li have to be in the ul tag --}}
+                    {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                        <li class="menu-item">
+                            <a class="menu-item-target" href="#" {{action "openModal" "modals/user-account" session.user target=target}}>
+                                <span class="text-icon icon-16-left icon-profile">Account</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="menu-item-target" href="#" {{action "logout" target=target}}>
+                                <span class="text-icon icon-16-left icon-exit">Logout</span>
+                            </a>
+                        </li>
+                    {{/view}}
+                </ul>
+            {{/dropdown-menu}}
+        {{else}}
+            <li class="menu-item">
+                {{#link-to 'login' class="menu-item-target"}}
+                    <span class="text-icon icon-16-left icon-enter">Login</span>
+                {{/link-to}}
+            </li>
+        {{/if}}
+    </ul>
+</div>
+

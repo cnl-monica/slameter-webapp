@@ -1,0 +1,48 @@
+{{#dropdown-menu tagName="span" position=tooltipOrientation theme="dropdown-theme-with-header"}}
+    <span class="tooltip" title="Saved filters" data-tooltip-position="{{unbound tooltipOrientation}}">
+        <button type="button" class="flat-button dropdown-trigger">
+            <i class="icon-16 icon-folder-open"></i>
+        </button>
+    </span>
+    {{#view viewName="dropdownContent"}}
+        <div class="header">saved filters</div>
+        <ul class="dropdown-menu">
+            {{#each query in savedQueriesWithName}}
+                <li class="menu-item">
+                    <a class="menu-item-target" {{action "load" query.query target=component}}>
+                        {{query.name}}
+                    </a>
+                </li>
+            {{else}}
+                <span class="centered">No filters</span>
+            {{/each}}
+        </ul>
+    {{/view}}
+{{/dropdown-menu}}
+
+{{#dropdown-menu tagName="span" position=tooltipOrientation theme="dropdown-theme-with-header"}}
+    <span class="tooltip" title="Save" data-tooltip-position="{{unbound tooltipOrientation}}">
+        <button type="button" class="flat-button dropdown-trigger">
+            <i class="icon-16 icon-download"></i>
+        </button>
+    </span>
+    {{#view viewName="dropdownContent"}}
+        <div class="header">save current filter</div>
+        <form style="padding: 0.8rem;text-align: right;line-height: 2.8rem">
+            name:&nbsp;{{input value=newFilterName error=newFilterNameError}}<br>
+            <input type="submit" value="save" {{action "save" target=component}}>
+        </form>
+    {{/view}}
+{{/dropdown-menu}}
+
+{{#unboundIf canRestore}}
+    <button type="reset" class="flat-button tooltip" title="Restore"
+            data-tooltip-position="{{unbound tooltipOrientation}}" type="reset" {{action "restore"}}>
+        <i class="icon-16 icon-history"></i>
+    </button>
+{{/unboundIf}}
+
+<button type="submit" class="flat-button tooltip" title="Apply"
+        data-tooltip-position="{{unbound tooltipOrientation}}" type="submit" {{action "apply"}}>
+    <i class="icon-16 icon-checkmark"></i>
+</button>

@@ -1,0 +1,22 @@
+<div class="l-constrained">
+    <div class="scrolled-slameter-branding is-hidden">
+        <div class="branding-icon"></div>
+        <div class="branding-header">SLAmeter</div>
+    </div>
+    <div class="page-toolbox">
+        {{outlet toolboxWrapper}}
+    </div>
+    <nav class="sections-nav">
+        <ul class="horizontal-navlist">
+            {{#each section in controller.sectionRoutes}}
+                <li class="navlist-item">
+                    {{#link-to section.name class="navlist-item-target"}}
+                        {{section.title}}
+                    {{/link-to}}
+                </li>
+            {{/each}}
+        </ul>
+    </nav>
+</div>
+{{outlet toolsWrapper}}
+

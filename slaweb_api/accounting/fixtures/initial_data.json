@@ -1,0 +1,20 @@
+[
+    {
+        "model": "accounting.AccProvider",
+        "pk": 1,
+        "fields": {
+            "name": "Ezo net s.r.o",
+            "address_street_name" : "Kostoľanská",
+            "address_street_number" : "58",
+            "address_zip_code" : "08005",
+            "address_city" : "Košice",
+            "address_country" : "Slovak Republic",
+            "contact_number" : "+421944753951",
+            "email" : "servis@ezonet.sk",
+            "ico" : "0123456789",
+            "dic" : "9876543210",
+            "accountNo" : "0123456789/0900",
+            "tax" : "19"
+        }
+    }
+]

@@ -1,0 +1,86 @@
+                    <table class="bill-info-table" align="center">
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td class="address-td-label">Bill Type</td>
+                                <td class="bill-info-table-value">: {{plan.billing_type}}
+                                  {{#dropdown-menu tagName="div"}}
+
+                                        <div class="dropdown-trigger">
+                                            <span class="table-button">&nbsp;&nbsp;Details</span>
+                                        </div>
+                                            {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="bill-desc-bubbled-field">
+                                                            {{#if plan._data.criteria}}
+                                                                Billing is based on User-specific Criteria.<br>
+                                                                For every criterium are defined tariffs.<br>
+                                                                Criteria for this accounting Client
+                                                                are defined:
+                                                                {{#link-to 'accounting.criteria-billing' (query-params accuser=plan._data.user_id action="list" criteria='0')}}
+                                                                    <span class="bl-link">&nbsp;&nbsp;Here</span>
+                                                                {{/link-to}}
+                                                            {{else}}{{#if plan._data.volume}}
+                                                                Billing is based on total amount <br> of downloaded/uploaded data. <br>
+                                                                The simplest method.
+                                                            {{else}}
+                                                                Billing is based on 95th percentile <br> calculation of used bandwidth.
+                                                            {{/if}}{{/if}}
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            {{/view}}
+
+                                    {{/dropdown-menu}}
+
+
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Billing Period</td>
+                                <td class="bill-info-table-value">: {{as-period plan.period}}</td>
+                            </tr>
+                            <tr>
+                                <td>Billing Generation Date</td>
+                                <td class="bill-info-table-value">: {{as-period plan.period months=plan.months day=plan.generation_date}}</td>
+                            </tr>
+                            {{#if plan.description}}
+                            <tr>
+                                <td>Bill Description</td>
+
+                                <td class="bill-info-table-value">
+                                    {{#dropdown-menu tagName="div"}}
+
+                                        <div class="dropdown-trigger">
+                                            <span class="table-button">&nbsp;&nbsp;Show</span>
+                                        </div>
+                                            {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="bubble-label">Description</td>
+                                                        <td class="bill-desc-bubbled-field">{{plan.description}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            {{/view}}
+
+                                    {{/dropdown-menu}}
+                                </td>
+                            </tr>
+                            {{/if}}
+
+                            {{#if plan.mail_address}}
+                                {{partial 'accounting/partials/explic_mail'}}{{else}}
+                                {{#if plan.mail_subject}}
+                                    {{partial 'accounting/partials/explic_mail'}}
+                                {{/if}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>

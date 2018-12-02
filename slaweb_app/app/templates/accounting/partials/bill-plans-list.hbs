@@ -1,0 +1,93 @@
+<div class="content">
+    <div class="content">
+{{#each plan in plans}}
+
+    <div class="bill-list-item">
+        <div class="bill-list-label">
+            <div class="bill-list-label-text-box">
+                    <span class="bill-list-label-inner-text">
+
+                         Bill Plan Name: <span class="bill-list-label-inner-text-big">{{plan.name}}</span>
+                         {{#if isProvider}}&nbsp;&nbsp;for entity: <span class="bill-list-label-inner-text-big">{{plan._data.user._data.name}} ({{plan._data.user._data.email}}) </span>{{/if}}
+                    </span>
+
+                    <span class="bill-list-label-inner-icon-button">
+
+                                {{#if plan._data._showed}}
+                                    <button class="show-hide-plan-button" {{action "show_hide_plan" plan.id}}><span class="icon-16-left icon-arrow-up-2 icon-look"></span></button>
+                                {{else}}
+                                    <button class="show-hide-plan-button" {{action "show_hide_plan" plan.id}}><span class="icon-16-left icon-arrow-down-2 icon-look"></span></button>
+                                {{/if}}
+                    </span>
+                     <label class="button-label">
+                         {{#if plan._data._showed}}
+                            Click on button for hiding details:
+                         {{else}}
+                            Click on button for showing details:
+                         {{/if}}
+                     </label>
+
+            </div>
+        </div>
+        {{#if plan._data._showed}}
+            <div class="bill-plan-info-boxes">
+                <div class="basic-bill-plan-info-box">
+                    <div class="basic-bill-plan-label-box">
+                        <span class="basic-bill-plan-label-text">
+                            Basic information
+                        </span>
+                    </div>
+                    <div class="bill-info-table-padd-box">
+                        {{partial 'accounting/partials/bill-plans-list-basic-info'}}
+                    </div>
+                </div>
+
+                <div class="basic-bill-plan-info-box">
+                    <div class="basic-bill-plan-label-box">
+                        <span class="basic-bill-plan-label-text">
+                            Costs and tariffs
+                        </span>
+                    </div>
+                    <div class="bill-info-table-padd-box">
+                        {{partial 'accounting/partials/bill-plans-list-cost-info'}}
+                    </div>
+                </div>
+
+                <div class="basic-bill-plan-info-box">
+                    <div class="basic-bill-plan-label-box">
+                        <span class="basic-bill-plan-label-text">
+                            Accounting Entity
+                        </span>
+                    </div>
+                    <div class="bill-info-table-padd-box">
+                        {{partial 'accounting/partials/bill-plans-list-user-info'}}
+                    </div>
+                    </div>
+            {{#if isProvider}}
+                {{#if plan._data._removeDialog}}
+                    <div class="delete-message-bill-plans">
+                        <h4>Are you sure ?</h4>
+                        <p>Are you sure you want to delete the selected bill plan?</p>
+                        <button {{action 'remove' plan.id}}>
+                        Yes, I'm sure
+                        </button>
+                        <button {{action 'show_hide_remove_dialog' plan.id}}>
+                        Cancel
+                        </button>
+                    </div>
+                {{else}}
+                    {{#if plan._data._editDialog}}
+                        {{partial 'accounting/partials/bill-plans-edit-form'}}
+                    {{else}}
+                        <button class="bill-plans-edit-button" {{action "show_hide_edit_dialog" plan.id}}> Edit </button>
+                        <button class="bill-plans-edit-button" {{action "show_hide_remove_dialog" plan.id}}> Remove </button>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            </div>
+        {{/if}}
+    </div>
+
+{{/each}}
+    </div>
+</div>

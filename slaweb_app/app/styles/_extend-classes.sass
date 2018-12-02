@@ -1,0 +1,64 @@
+// Box
+%box
+    background: $image-bg-pattern-white $white
+    border: 0.1rem solid $base-border-color
+    @include box-shadow(0 0 0.2rem $grey6)
+
+// Set min-content width property
+%width-min-content
+    width: -moz-min-content
+    width: -webkit-min-content
+    width: min-content
+
+// Stretches element to full size of it's parent size
+%full-stretch
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+
+%top-bottom-stretch
+    position: absolute
+    top: 0
+    bottom: 0
+
+// Vertical centering with absolute positioning
+%vertical-center-abs
+    position: absolute
+    top: 0
+    bottom: 0
+    margin-top: auto
+    margin-bottom: auto
+
+// Optimize legibility of fonts
+%opt-legibility
+    text-rendering: optimizeLegibility
+
+// Reset list styling
+%list-reset
+    list-style: none
+    margin: 0
+    padding: 0
+
+// Shadow only on top and bottom
+%box-shadow-top-bottom
+    &:before
+        @include pseudo-inset-shadow(rgba($grey4, 0.25), 0.2rem, top)
+    &:after
+        @include pseudo-inset-shadow(rgba($grey4, 0.25), 0.2rem, bottom)
+
+// Arrow
+%arrow
+    &:after, &:before
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+        z-index: 10
+    &:after
+        border-color: transparent
+    &:before
+        border-color: transparent

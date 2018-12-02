@@ -1,0 +1,214 @@
+<div class="criteriaForm">
+    <h3 id="criteriaFormH3">Accounting criteria {{#if editButtonIsVisible}}  Modification  for Criteria with Id {{criteria_edit_id}} {{else}} Creation {{/if}}</h3>
+<div align="center">
+    <table class="criteriaFormTable">
+<thead></thead>
+<tbody>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Source IP Addresses&nbsp;:</span>
+        </td>
+        <td class="column-value">
+            {{input type="text" value=sourceIpAddress size="50" maxlength="256" placeholder="for example: 172.16.31.1;192.168.32.0/19 ..."}}
+        </td>
+        <td class="column-error">
+            {{#if ipAddressError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Both addresses fields cannot be empty !</span>{{/if}}
+            {{#if sourceIpAddressError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad format for ip addresses !</span>{{/if}}
+        </td>
+    </tr>
+
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Destination IP Addresses&nbsp;:</span>
+        </td>
+        <td class="column-value">
+            {{input type="text" value=destinationIpAddress size="50" maxlength="256" placeholder="for example: 172.16.31.1;192.168.32.0/19 ..."}}
+        </td>
+        <td class="column-error">
+            {{#if ipAddressError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Both addresses fields cannot be empty !</span>{{/if}}
+            {{#if destinationIpAddressError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad format for ip addresses !</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Source Ports&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=sourcePorts size="50" maxlength="128" placeholder="for example: 53;80;110 ..." }}
+        </td>
+
+        <td class="column-error">
+            {{#if sourcePortsError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad format for ports !</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Destination Ports&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=destinationPorts size="50" maxlength="128" placeholder="for example: 20;22;123 ..."}}
+        </td>
+
+        <td class="column-error">
+            {{#if destinationPortsError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad format for ports !</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>DSCP&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=dscp  size="50" maxlength="16" placeholder="Dscp values are from 0 to 63, for example: 0;48;63"}}
+        </td>
+
+        <td class="column-error">
+            {{#if dscpError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad format for dscp numbers !</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Protocol&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view Ember.Select content=protocolSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentProtocol}}
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Strong Traffic (Default) Volume &nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=rateshdata  size="40" maxlength="50" placeholder="for example: 0.23" }}
+            {{view "select" content=base_volume_select optionValuePath="content.val" optionLabelPath="content.label" value=sh_unit}}
+
+        </td>
+
+        <td class="column-error">
+            {{#if rateshdataError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format, use e.g. 1.111 !</span>{{else}}<span class="form-info"></span> {{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Strong Traffic Rate&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=ratesh  size="50" maxlength="10" placeholder="for example: 0.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if rateshError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format, use e.g. 1.111 !</span>
+            {{else}}
+                    {{# if ratesh}}
+                        {{#if rateshdata}}
+                        <span class="form-info"> {{ratesh}} EUR for every {{as-data rateshdata input_unit=sh_unit}} </span>
+                        {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Weak Traffic Volume &nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=ratewhdata  size="40" maxlength="50" placeholder="for example: 0.23" }}
+            {{view "select" content=base_volume_select optionValuePath="content.val" optionLabelPath="content.label" value=wh_unit}}
+        </td>
+
+        <td class="column-error">
+            {{#if ratewhdataError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format, use e.g. 1.111 !</span>{{else}} <span class="form-info">  [Bytes] </span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Weak Traffic Rate&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=ratewh size="50" maxlength="10" placeholder="for example: 5.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if ratewhError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format, use e.g. 1.111 !</span>
+            {{else}}
+                    {{# if ratesh}}
+                        {{#if rateshdata}}
+                        <span class="form-info"> {{ratewh}} EUR for every {{as-data ratewhdata input_unit=wh_unit}} </span>
+                        {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+            <span>Priority For Criteria&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+             {{input type="text" value=priority size="50" maxlength="9" placeholder="Is integer, lowest number = highest priority , for example: 5"}}
+        </td>
+
+        <td class="column-error">
+            {{#if priorityError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format, use Integer !</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label">
+           <span>Multicast&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view "select" content=multicastSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentMulticast}}
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label">
+        </td>
+
+        <td class="column-value">
+            Item marked with * are mandatory !
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+
+</tbody>
+</table>
+
+<div id="crit-form-buttons">
+    {{#if editButtonIsVisible}}
+      <button  {{action "editCriteria"}}> Save </button>
+    {{else}}
+      <button  {{action "createCriteria"}}> Create </button>
+    {{/if}}
+    <button {{action "cancel"}}>Cancel</button>
+</div>
+</div>

@@ -1,0 +1,84 @@
+.slaclass-module
+    .module-body
+        margin: 0 auto
+        width: 16rem
+        text-align: center
+    .slaclass-module-text
+        color: $darkred
+        @include font-big
+        line-height: 1
+        text-align: right
+        display: inline-block
+        margin: 0 0.4rem
+    .slaclass-module-num
+        font-size: 4.8rem
+        line-height: 1
+        font-weight: 900
+        display: inline-block
+        @include sharp-text-shadow($grey8)
+    .slaclass-module-bar
+        border: 1px solid $darkgreen
+        height: 1.6rem
+        margin: 0.4rem 0 1.6rem 0
+        @include border-radius
+        background-color: rgba($grey7, 0.5)
+        box-shadow: inset 0 0 1px $grey3
+        overflow: hidden
+        position: relative
+    .slaclass-module-bar-status
+        width: 67%
+        height: 100%
+        background-color: $lightgreen
+        @include border-radius
+
+
+.sidebar-nav
+    background: $lightgreen $image-bg-pattern-lightgreen
+    .sidebar-nav-header
+        position: relative
+        height: $module-header-height
+        line-height: $module-header-height
+        background: $midgreen $image-bg-pattern-midgreen
+        @include border(0 0 0.1rem 0, solid, $darkgreen)
+        border-bottom: 0.1rem solid $darkgreen
+        h3
+            color: $white
+            text-shadow: none
+    .navlist
+        //max-height: 30rem
+        overflow: hidden
+        position: relative
+        display: block
+        &:before
+            @include pseudo-inset-shadow(rgba($grey3, 0.66), 0.2rem, top)
+        &:after
+            @include pseudo-inset-shadow(rgba($grey3, 0.66), 0.2rem, bottom)
+    .navlist-item
+        background: $lightgreen $image-bg-pattern-lightgreen
+        @include box-sizing(border-box)
+        width: 100%
+        @include border(0 0 0.1rem 0, solid, rgba($white, 0.75))
+        &:nth-child(even)
+            // scatter background to break pattern
+            background-position: 0 3.2rem
+        &%is-pinned  // not an error :D
+            position: absolute
+            list-style: none
+            z-index: 1
+        &.is-pinned-to-top
+            @extend %is-pinned
+            border-top: none
+            border-bottom-width: 0.1rem
+            @include box-shadow(0 0.3rem 0.2rem -0.2rem rgba($grey3, 0.5))
+        &.is-pinned-to-bottom
+            @extend %is-pinned
+            border-bottom: none
+            border-top-width: 0.1rem
+            @include box-shadow(0 -0.3rem 0.2rem -0.2rem rgba($grey3, 0.5))
+    .navlist-item-target
+        padding: 0.4rem 1.6rem
+        &.is-active, &:hover
+            color: $white
+            background-color: $midgreen
+            background-image: $image-bg-pattern-midgreen
+

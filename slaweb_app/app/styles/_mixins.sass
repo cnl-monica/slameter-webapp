@@ -1,0 +1,97 @@
+// --:: Global mixins ::--
+
+// -- Font sizes --
+@mixin font-base
+    font-size: $fontsize-base
+@mixin font-small
+    font-size: $fontsize-small
+@mixin font-big
+    font-size: $fontsize-big
+@mixin font-large
+    font-size: $fontsize-large
+@mixin font-huge
+    font-size: $fontsize-huge
+
+// -- Shadows --
+@mixin sharp-text-shadow($color: $grey6)
+    text-shadow: 0.1rem 0.1rem 0 $color
+
+// -- Effect of inset shadow on one side of block element --
+    Intended to be used on :before or :after pseudo element
+@mixin pseudo-inset-shadow($color, $spread, $side)
+    content: " "
+    position: absolute
+    z-index: 1
+    @if $side == left
+        background-image: linear-gradient(to right, $color 0, rgba($color, 0) $spread)
+        width: $spread
+        height: 100%
+        left: 0
+        top: 0
+    @if $side == right
+        background-image: linear-gradient(to left, $color 0, rgba($color, 0) $spread)
+        width: $spread
+        height: 100%
+        right: 0
+        top: 0
+    @if $side == top
+        background-image: linear-gradient(to bottom, $color 0, rgba($color, 0) $spread)
+        width: 100%
+        height: $spread
+        left: 0
+        top: 0
+    @if $side == bottom
+        background-image: linear-gradient(to top, $color 0, rgba($color, 0) $spread)
+        width: 100%
+        height: $spread
+        left: 0
+        bottom: 0
+
+@mixin arrow($direction, $color, $border-color, $length: $arrow-size,  $border-size: $arrow-border)
+    // default values (direction = down)
+    $opposite: "top"
+    $align-side: "left"
+    @if $direction == "up"
+        $opposite: "bottom"
+        $align-side: "left"
+    @else if $direction == "left"
+        $opposite: "right"
+        $align-side: "top"
+    @else if $direction == "right"
+        $opposite: "left"
+        $align-side: "top"
+    $before-size: $length + $border-size
+    @extend %arrow
+    &:after, &:before
+        #{$opposite}: 100%
+    &:after
+        border-#{$opposite}-color: $color
+        border-width: $length
+        margin-#{$align-side}: -$length
+        #{$align-side}: 50%
+    &:before
+        border-#{$opposite}-color: $border-color
+        border-width: $before-size
+        margin-#{$align-side}: -$before-size
+        #{$align-side}: 50%
+
+// -- Border image gradient --
+@mixin border-image-gradient($top-color, $bottom-color, $fallback-image-url)
+    -moz-border-image: $fallback-image-url 1 100% stretch
+    -ms-border-image: $fallback-image-url 1 100% stretch
+    -o-border-image: $fallback-image-url 1 100% stretch
+    border-image: linear-gradient(to bottom, $top-color 20%, $bottom-color 90%) 1 100%
+
+@mixin inline-block-nospace-container($child-selector, $fontsize: $fontsize-base)
+    // including element represents container for inline-block elements and
+        removes space between those elements by setting it's font-size to 0
+    font-size: 0
+    & > #{$child-selector}
+        display: inline-block
+        font-size: $fontsize
+
+@mixin border($width, $style, $color)
+    border:
+        width: $width
+        style: $style
+        color: $color

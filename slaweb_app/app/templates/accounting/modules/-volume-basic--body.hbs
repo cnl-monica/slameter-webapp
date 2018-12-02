@@ -1,0 +1,154 @@
+{{#if form}}
+<div align="left">
+<table class="volBasFormTable">
+<thead></thead>
+<tbody>
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Base Volume&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=basevolume  size="50" maxlength="50" placeholder="for example: 0.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if basevolumeError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format !</span>{{else}} <span class="form-info">  [Bytes] </span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Base Cost&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=basecost size="50" maxlength="10" placeholder="for example: 5.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if basecostError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format !</span>
+            {{else}}
+                {{# if basecost}}
+                        {{#if basevolume}}
+                <span class="form-info"> {{basecost}} EUR for first {{as-data basevolume}} </span>
+                            {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Additional Volume&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=additionalvolume  size="50" maxlength="50" placeholder="for example: 0.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if additionalvolumeError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format !</span>{{else}} <span class="form-info">  [Bytes] </span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Additional Cost&nbsp;:&nbsp;*</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=additionalcost size="50" maxlength="10" placeholder="for example: 5.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if additionalcostError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Empty or bad format !</span>
+            {{else}}
+                    {{# if additionalcost}}
+                        {{#if additionalvolume}}
+                        <span class="form-info"> {{additionalcost}} EUR for every next {{as-data additionalvolume}} </span>
+                        {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Calculation type&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view "select" content=calcVolumeTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentVolumeCalcType}}
+
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+    <tr><td></td>
+        <td>
+            <div class="volumeDesc">{{desc}}</div>
+        </td>
+        <td></td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Time interval&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view "select" content=calcVolumeIntervalSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentVolumeCalcInterval}}
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+                {{#if show_volume_calendar}}
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+        </td>
+
+        <td class="column-value">
+
+            <div class="calendars">
+                 <label>From&nbsp;:&nbsp;{{date-time-input time=startTime}}</label>
+            </div>
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+        </td>
+
+        <td class="column-value">
+
+            <div class="calendars">
+                 <label>To&nbsp;:&nbsp;{{date-time-input time=endTime}}</label>
+            </div>
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+     {{/if}}
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+        </td>
+        <td class="apply_button">
+            <button  {{action "recompute"}}> Apply </button>
+        </td>
+        <td class="column-error">
+        </td>
+    </tr>
+
+    </tbody>
+    </table>
+</div>
+{{/if}}

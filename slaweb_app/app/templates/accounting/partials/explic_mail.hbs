@@ -1,0 +1,27 @@
+  <tr>
+                                <td>Explicit E-mail Addresss/Subject</td>
+
+                                <td class="bill-info-table-value">
+                                    {{#dropdown-menu tagName="div"}}
+
+                                        <div class="dropdown-trigger">
+                                            <span class="table-button">&nbsp;&nbsp;Show</span>
+                                        </div>
+                                            {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="bubble-label">E-mail Address</td>
+                                                        <td>: {{plan.mail_address}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bubble-label">E-mail Subject</td>
+                                                        <td>: {{plan.mail_subject}}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            {{/view}}
+
+                                    {{/dropdown-menu}}
+                                </td>
+                            </tr>

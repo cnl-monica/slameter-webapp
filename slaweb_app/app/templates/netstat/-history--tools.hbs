@@ -1,0 +1,7 @@
+<div class="l-constrained-to-main">
+    {{#filter-tool apply="applyGlobalQuery" restore='restoreGlobalQuery' save="saveGlobalQuery" load="loadGlobalQuery" savedQueries=sectionQueries}}
+        {{time-filter inputValue=lastGlobalQuery.time outputValue=globalQuery.time}}
+        {{ip-filter inputValue=lastGlobalQuery.ips outputValue=globalQuery.ips user=session.user}}
+        {{port-filter inputValue=lastGlobalQuery.ports outputValue=globalQuery.ports user=session.user}}
+    {{/filter-tool}}
+</div>

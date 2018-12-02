@@ -1,0 +1,12 @@
+{{#if canBeExpandedInWall}}
+    {{toolbox-button-toggler toolName="brickExpandTook" action="expandInWall" isActive=expandedInWall icon="embed" title="expand"}}
+{{/if}}
+{{#if expanded}}
+    {{toolbox-button action="expand" icon="arrow-up" title="Hide"}}
+{{else}}
+    {{toolbox-button action="expand" icon="arrow-down" title="Show"}}
+{{/if}}
+
+{{#if isProvider }}
+{{toolbox-button action="toggleForm" icon="plus" title="Add criterium"}}
+{{/if}}

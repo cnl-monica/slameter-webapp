@@ -1,0 +1,96 @@
+%branding
+    position: relative
+    float: left
+    width: $sidebar-width
+    margin-right: $gutter-full
+    > .branding-icon
+        @extend %vertical-center-abs
+        display: inline-block
+        margin-left: 0.8rem
+    > .branding-header
+        display: inline-block
+        vertical-align: middle
+
+.slameter-branding
+    @extend %branding
+    line-height: $headerbar-height
+    margin-right: $gutter-full
+    > .branding-icon
+        background: linear-gradient(transparent, transparent), $image-slameter-icon
+        background-repeat: no-repeat
+        background-size: 100% auto
+        width: 6.4rem
+        height: 6.4rem
+        max-height: 90%
+    > .branding-header
+        background: linear-gradient(transparent, transparent), $image-slameter-heading
+        background-repeat: no-repeat
+        background-position: 0% 50%
+        background-size: 100% auto
+        width: 15rem
+        //height: 4rem
+        line-height: $line-height
+        margin-left: 8rem
+        text-indent: -9999px
+
+.scrolled-slameter-branding
+    @extend .slameter-branding
+    line-height: $utilbar-height
+    > .branding-icon
+        width: 1.6rem
+        height: 1.6rem
+    > .branding-header
+        +font-big
+        height: 1.6rem
+        background-size: auto 100%
+        position: relative
+        top: -0.1rem
+        font-weight: 600
+        color: $darkblue
+        +sharp-text-shadow($lightgreen)
+        margin-left: 2.8rem
+
+
+.slameter-branding-plate
+    text-align: left
+    position: relative
+    height: 12.8rem
+    line-height: 12.8rem
+    .slameter-header
+        background: linear-gradient(transparent, transparent), $image-slameter-heading
+        background-repeat: no-repeat
+        background-position: 0% 50%
+        background-size: 100% auto
+        width: 25.6rem
+        line-height: $line-height
+        text-indent: -9999px
+    .slameter-icon
+        background: linear-gradient(transparent, transparent), $image-slameter-icon
+        background-size: 100% auto
+        display: inline-block
+        width: 12.8rem
+        height: 12.8rem
+        margin-left: 0.4rem
+        @extend %vertical-center-abs
+    hgroup
+        display: inline-block
+        vertical-align: middle
+        line-height: $line-height
+        margin: auto 0 auto 16rem
+    h1
+        font-size: 4.8rem
+    h2
+        margin-top: $gutter-half
+
+.provider-branding
+    @extend %branding
+    min-height: 1px  // prevent empty branding from shifting following elements
+    font-weight: 300
+    a
+        display: inline-block
+        color: $lightgreen
+        padding: 0 0.8rem
+        line-height: $topbar-height
+        &:hover
+            color: $white
+            background: $image-bg-pattern-midgreen $midgreen

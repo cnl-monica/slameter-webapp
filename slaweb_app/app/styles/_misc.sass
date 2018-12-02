@@ -1,0 +1,39 @@
+// Disabled JavaScript Alert
+.no-js-alert
+    display: none
+    font-weight: 300
+    color: $darkred
+    position: fixed
+    top: 16rem
+    background: transparentize($lightyellow, 0.1)
+    z-index: 100
+    text-align: center
+    width: 100%
+    padding: 1rem
+    @include box-shadow(0 0 0.5rem $grey4)
+    .text-icon
+        @include font-large
+        text-align: left
+    .no-js &
+        display: block
+
+// Emulator class
+    used to mark element as emulators, or placeholders for other elements
+.emulator
+    z-index: -10
+    speak: none
+
+.truncated
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+
+.centered
+    text-align: center
+
+// modify jquery-ui-timepicker
+.ui-timepicker-div dl dd
+    margin: 0 1rem 1rem 8rem
+
+
+

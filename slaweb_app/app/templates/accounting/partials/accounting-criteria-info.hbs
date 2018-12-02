@@ -1,0 +1,34 @@
+<td>{{criteria.id}}</td>
+<td><b>{{criteria.priority}}</b></td>
+<td>{{split-string criteria.sourceIpAddresses splitter=';'}}</td>
+<td>{{split-string criteria.destinationIpAddresses splitter=';'}}</td>
+<td>{{criteria.protocolName}}</td>
+<td>{{criteria.sourcePorts}}</td>
+<td>{{criteria.destinationPorts}}</td>
+<td>{{criteria.dscp}}</td>
+<td>{{criteria.isMulticast}}</td>
+<td>
+
+    {{#view "show-hide-td"}}
+        {{#if view.hidden}}
+            <a class="table-button">Show</a>
+        {{else}}
+            <div class="rates-div">ST {{criteria.rate_sh}} Eur for {{as-data criteria.rate_sh_data}}</div>
+            <div class="rates-div">WT {{criteria.rate_wh}} Eur for  {{as-data criteria.rate_wh_data}}</div>
+            <a class="table-button">Hide</a>
+        {{/if}}
+    {{/view}}
+
+</td>
+{{#if isProvider }}
+    <td>
+        <button class="criteria-button" {{action 'show_edit' criteria.id}}>
+            <span class="icon-16-left icon-pencil icon-look"></span>
+        </button>
+    </td>
+    <td>
+        <button class="criteria-button" {{action 'show_remove' criteria.id}}>
+            <span class="icon-16-left icon-remove icon-look"></span>
+        </button>
+    </td>
+{{/if}}

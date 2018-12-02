@@ -1,0 +1,60 @@
+<fieldset>
+    <legend class="tool-section-header">IP Addresses</legend>
+    <div class="tool-section-toolbox">
+        <div class="mini-tool" {{action "reset"}}>
+            <i class="icon-12 icon-history tooltip" title="restore"></i>
+        </div>
+        <div class="mini-tool" {{action "clear"}}>
+            <i class="icon-12 icon-close tooltip" title="clear"></i>
+        </div>
+    </div>
+    <div class="tool-subsection-header">
+        <i class="icon-12 icon-tab"></i>&nbsp;&nbsp;
+        {{#unboundIf forProvider}}
+            {{checkbox-button name="section" value="source_ip" label="Sources" checked=providerDirs.0.checked}}&nbsp;&nbsp;
+            {{checkbox-button name="section" value="destination_ip" label="Destinations" checked=providerDirs.1.checked}}&nbsp;&nbsp;
+            {{checkbox-button name="section" value="host_ip" label="Nondirectional" checked=providerDirs.2.checked}}
+        {{else}}
+            {{radio-button name="ip_section" value="source_ip" label="Sources" selection=direction}}&nbsp;&nbsp;
+            {{radio-button name="ip_section" value="destination_ip" label="Destinations" selection=direction}}&nbsp;&nbsp;
+            {{radio-button name="ip_section" value="host_ip" label="Nondirectional" selection=direction}}
+        {{/unboundIf}}
+    </div>
+    {{#unboundIf forProvider}}
+        {{#each ipDir in providerDirs}}
+            {{#if ipDir.checked}}
+                <div class="tool-subsection has-title">
+                    <div class="tool-subsection-title">{{ipDir.name}}</div>
+                    <div class="tool-subsection-header">
+                        <i class="icon-12 icon-filter"></i>&nbsp;&nbsp;
+                        {{radio-button name=ipDir.direction value="range" label="Range" selection=ipDir.type}}&nbsp;&nbsp;
+                        {{radio-button name=ipDir.direction value="array" label="Addresses" selection=ipDir.type}}
+                    </div>
+                    {{#if ipDir.rangeSelected}}
+                        <label>from IP:&nbsp;{{iconed-formfield type="text" icon="tree" value=ipDir.startIp}}</label><br>
+                        <label>to IP:&nbsp;{{iconed-formfield type="text" icon="tree" value=ipDir.endIp}}</label>
+                    {{/if}}
+                    {{#if ipDir.arraySelected}}
+                        {{collection-input label="IP" icon="tree" collection=ipDir.multiIp}}
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        <div class="tool-subsection">
+            <div class="tool-subsection-header">
+                <i class="icon-12 icon-filter"></i>&nbsp;&nbsp;
+                {{radio-button name="ip_type" value="range" label="Range" selection=type}}&nbsp;&nbsp;
+                {{radio-button name="ip_type" value="array" label="Addresses" selection=type}}
+            </div>
+            {{#if rangeSelected}}
+                <label>from IP:&nbsp;{{iconed-formfield type="text" icon="tree" value=startIp}}</label><br>
+                <label>to IP:&nbsp;{{iconed-formfield type="text" icon="tree" value=endIp}}</label>
+            {{/if}}
+            {{#if arraySelected}}
+                {{collection-input label="IP" icon="tree" collection=multiIp}}
+            {{/if}}
+        </div>
+    {{/unboundIf}}
+</fieldset>
+

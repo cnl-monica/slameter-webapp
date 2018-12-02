@@ -1,0 +1,10 @@
+{{#if showContent}}
+    {{#if formIsActive}}
+        {{partial 'accounting/partials/comp-users-form'}}
+    {{else}}
+
+    {{/if}}
+
+    {{comp-users-chart data=data}}
+    {{partial 'accounting/partials/users-table'}}
+{{/if}}

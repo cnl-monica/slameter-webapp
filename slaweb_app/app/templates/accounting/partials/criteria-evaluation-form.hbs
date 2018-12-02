@@ -1,0 +1,80 @@
+<div class="evalForm">
+    <h4>Time and Tariff Interval Settings: </h4>
+
+<table class="evalTable" align="center">
+    <tbody>
+    <tr>
+        <td>
+            <p>Time interval type: &nbsp;</p>
+        </td>
+        <td>
+            <p>Strong/Weak Traffic-First Interval : </p>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            {{view "select" content=calcTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentCalcType}}
+        </td>
+        <td>
+
+            <label>From&nbsp;:&nbsp;
+            {{view "select"content=hourSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentFromHour}}
+            &nbsp;Hour
+            </label>
+        </td>
+        <td>
+            <button  {{action "recompute"}}> Submit </button>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="cmp-users-td">
+        {{#if show_named}}
+            {{view "select" content=namedSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentNamedSelect}}
+        {{/if}}
+        {{#if show_relative}}
+            <span>Last </span>{{input value=currentRelativeValue size=5 maxlength=5}}
+            {{view "select" content=relativeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentRelativeSelect}}
+        {{/if}}
+
+        {{#if show_calendar}}
+            <label>From&nbsp;:&nbsp;{{date-time-input time=startTime}}</label>
+        {{/if}}
+        </td>
+        <td>
+
+            <label>To&nbsp;:&nbsp;
+            {{view "select" content=hourSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentToHour}}
+            &nbsp;Hour
+            </label>
+
+        </td>
+        <td>
+            <button {{action "cancel"}}> Cancel </button>
+        </td>
+
+
+    </tr>
+    <tr>
+        {{#if show_calendar}}
+        <td>
+            <label>To&nbsp;:&nbsp;{{date-time-input time=endTime}}</label>
+        </td>
+        {{else}}
+        <td>
+        </td>
+        {{/if}}
+        <td>
+            <label>{{input type="checkbox" name="two_tariff" checked=two_tariff}}Include Double Time Tariff</label>
+        </td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+    {{#if fieldsError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;{{errorMessage}}</span>{{/if}}
+
+</div>

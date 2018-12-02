@@ -1,0 +1,280 @@
+// --:: LAYOUT styles ::--
+
+
+// Page content width constrain
+    creates page margin
+    constrains maximal page width
+.l-constrained
+    position: relative
+    min-width: 768px
+    margin:
+        left: $gutter-full
+        right: $gutter-full
+    @media (max-width: 890px)
+        margin:
+            left: $gutter-half
+            right: $gutter-half
+    @media (min-width: 2000px)
+        margin: auto
+        width: 200rem - ($gutter-full*2)
+
+.l-constrained-to-main
+    position: relative
+    padding:
+        left: $gutter-full*2 + $sidebar-width
+        right: $gutter-full*2 + $sidebar-width
+    @media (max-width: 1400px)
+        padding:
+            left: $gutter-full*2 + $sidebar-width/2
+            right: $gutter-full*2 + $sidebar-width/2
+    @media (max-width: 1280px)
+        padding:
+            left: $gutter-full
+            right: $gutter-full
+    @media (min-width: 2000px)
+        padding: auto
+        width: 200rem - ($gutter-full*4 + $sidebar-width*2)
+    //@include transition(margin 0.5s linear)
+
+
+// Sidebar silent class
+%l-sidebar
+    @include box-sizing(border-box)
+    display: none
+    position: relative
+    width: $sidebar-width
+    margin-top: $gutter-full
+
+// Left sidebar
+    displayed when app view  has 'has-left-sidebar' class
+.l-left-sidebar
+    @extend %l-sidebar
+    float: left
+    body > .app-root.has-left-sidebar &
+        display: block
+    @media (max-width: $width-when-switch-sidebars)
+        clear: left
+
+// Right sidebar
+    displayed when app view has 'has-right-sidebar' class
+.l-right-sidebar
+    @extend %l-sidebar
+    float: right
+    body > .app-root.has-right-sidebar &
+        display: block
+
+    // if both sidebars are shown, switch right-side one to the left
+    // when media width is less tha $width-when-switch-sidebars
+    @media (max-width: $width-when-switch-sidebars)
+        body > .app-root.has-left-sidebar.has-right-sidebar &
+            float: left
+
+
+.l-sidebar-section
+    & ~ &
+        // insert gutter between successive sidebar sections
+        margin-top: $gutter-full
+
+.l-sidebar-box-section
+    @extend .l-sidebar-section
+    @extend %box
+
+
+.l-fixed
+    width: 100%
+    position: fixed
+    z-index: 100
+
+// Top menu bar
+.l-topbar
+    @extend .clearfix
+    width: 100%
+    position: relative
+    background: $image-bg-pattern-darkgreen left top $darkgreen
+    border-top: $topbar-border-top-height solid $darkestgreen
+    //border-bottom: 0.1rem solid transparent
+    @include transition(height .5s, border .5s, box-shadow .5s)
+    &.is-fixed
+        @extend .l-fixed
+        top: 0
+        box-shadow: 0 0.1rem 0.2rem $grey3
+        border-bottom: 1px solid $lightgreen
+
+// Header bar
+.l-headerbar
+    width: 100%
+    height: $headerbar-height
+    background: $image-bg-pattern-lightgreen left top $lightgreen
+
+// Utility bar
+.l-utilbar
+    width: 100%
+    background: $image-bg-pattern-midgreen $midgreen
+    min-height: $utilbar-height
+    line-height: $utilbar-height
+    @include box-sizing(border-box)
+    @include border(1px 0, solid, $white)
+    @include transition(border 0.5s, box-shadow 0.5s)
+    &.is-fixed
+        @extend .l-fixed
+        border-top: 0
+        border-bottom: 0.1rem solid white
+        box-shadow: 0 0.1rem 0.2rem $grey3
+
+.l-topbar-emulator, .l-utilbar-emulator
+    @include transition(height 0.5s ease)
+
+.l-footer
+    width: 100%
+    margin-top: $gutter-full
+
+// Content wrapper
+.l-content-wrapper
+    @extend .clearfix
+
+.l-content-wrapper-centered
+    @extend .l-content-wrapper
+    text-align: center
+
+
+
+.l-main
+    @extend .clearfix
+    position: relative
+    padding: $gutter-full
+    font-size: 1.45rem
+
+    // set margin for sidebars, when width is sufficient for
+    // both left and right sidebars to be shown in their default place
+    @media (min-width: $width-when-switch-sidebars)
+        body > .app-root.has-left-sidebar &
+            margin-left: $sidebar-width + $gutter-half
+            border-left-width: 0
+        body > .app-root:not(.has-left-sidebar) &
+            margin-left: -$gutter-half
+        body > .app-root.has-right-sidebar &
+            margin-right: $sidebar-width + $gutter-half
+            border-right-width: 0
+        body > .app-root:not(.has-right-sidebar) &
+            margin-right: -$gutter-half
+
+    // when width is less than one set in $width-when-switch-sidebars,
+    // and both sidebars are shown, make space only for
+    // left sidebar - right one will be displayed here as well
+    // (see sidebar classes definition in this file)
+    @media (max-width: $width-when-switch-sidebars)
+        body > .app-root.has-left-sidebar &, body > .app-root.has-left-sidebar.has-right-sidebar &
+            margin-left: $sidebar-width + $gutter-half
+            margin-right: -$gutter-half
+            border-left-width: 0
+        body > .app-root:not(.has-left-sidebar) &, body > .app-root:not(.has-left-sidebar.has-right-sidebar)
+            margin-left: -$gutter-half
+        body > .app-root.has-right-sidebar:not(.has-left-sidebar) &
+            // only right sidebar is present, do not switch
+            margin-left: -$gutter-half
+            margin-right: $sidebar-width + $gutter-half
+
+.l-main-sk
+    @extend .clearfix
+    position: relative
+    padding: $gutter-full
+    font-size: 1.4rem
+    font-family: sans-serif
+
+    // set margin for sidebars, when width is sufficient for
+    // both left and right sidebars to be shown in their default place
+    @media (min-width: $width-when-switch-sidebars)
+        body > .app-root.has-left-sidebar &
+            margin-left: $sidebar-width + $gutter-half
+            border-left-width: 0
+        body > .app-root:not(.has-left-sidebar) &
+            margin-left: -$gutter-half
+        body > .app-root.has-right-sidebar &
+            margin-right: $sidebar-width + $gutter-half
+            border-right-width: 0
+        body > .app-root:not(.has-right-sidebar) &
+            margin-right: -$gutter-half
+
+    // when width is less than one set in $width-when-switch-sidebars,
+    // and both sidebars are shown, make space only for
+    // left sidebar - right one will be displayed here as well
+    // (see sidebar classes definition in this file)
+    @media (max-width: $width-when-switch-sidebars)
+        body > .app-root.has-left-sidebar &, body > .app-root.has-left-sidebar.has-right-sidebar &
+            margin-left: $sidebar-width + $gutter-half
+            margin-right: -$gutter-half
+            border-left-width: 0
+        body > .app-root:not(.has-left-sidebar) &, body > .app-root:not(.has-left-sidebar.has-right-sidebar)
+            margin-left: -$gutter-half
+        body > .app-root.has-right-sidebar:not(.has-left-sidebar) &
+            // only right sidebar is present, do not switch
+            margin-left: -$gutter-half
+            margin-right: $sidebar-width + $gutter-half
+
+// Module Wall
+.l-wall
+    @include transition(height .5s linear)
+    position: relative
+    margin: -$gutter-half (-$gutter-full)
+    &.no-transitions
+        @include transition(none)
+
+.l-brick
+    @include box-sizing(border-box)
+    @include transition(transform .5s linear, width .5s linear, height .5s linear)
+    padding: $gutter-half
+    width: 100%
+    &.is-absolute-placed
+        position: absolute
+        left: 0
+        top: 0
+    &.no-transitions
+        @include transition(none)
+
+// small page layout, for pages like login and loadings
+.l-small-page
+    @extend %box
+    display: inline-block
+    margin-top: $gutter-full*2
+    padding: 3.2rem
+    position: relative
+
+.l-modal-overlay
+    width: 100%
+    height: 100%
+    position: fixed
+    left: 0
+    top: 0
+    text-align: center
+    z-index: 100
+    @include transition(background-color .5s ease)
+    background-color: rgba($grey1, 0)
+    &.is-showing
+        background-color: rgba($grey1, 0.2)
+
+.l-modal-dialog
+    $margin-top: $topbar-height + $gutter-full*2
+    @extend %box
+    position: relative
+    border-color: $darkblue
+    @include box-shadow(0 0 0.8rem rgba($grey2, 0.8))
+    display: inline-block
+    text-align: left
+    min-width: 32rem
+    @include transition(margin-top .5s ease, opacity .5s ease, transform .5s)
+    @include scale(1.1)
+    margin-top: $margin-top - 2.4rem
+    opacity: 0
+    &.is-showing
+        @include scale(1.0)
+        margin-top: $margin-top
+        opacity: 1
+
+
+.delete-message
+    margin-top:  10px
+    margin-left: 20px
+  
+hr
+    .hr-about
+        color: #808080

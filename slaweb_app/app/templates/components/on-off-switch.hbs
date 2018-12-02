@@ -1,0 +1,6 @@
+{{#if label}}
+    <div class="switch-label">{{label}}</div>
+{{/if}}
+<div class="outer-switch">
+    <div {{bind-attr class=":inner-switch isOn:is-on:is-off"}}></div>
+</div>

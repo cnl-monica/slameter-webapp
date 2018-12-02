@@ -1,0 +1,154 @@
+.module
+    position: relative
+    .module-header
+        margin: 0
+        padding: 0
+        background-color: $grey6
+        background: $image-bg-pattern-grey6 transparentize($grey6, 0.33)
+        height: $module-header-height
+        line-height: $module-header-height
+        position: relative
+        @include border(0 0 0.1rem 0, solid, $base-border-color)
+
+    %l-sidebar &
+        //background:
+            image: linear-gradient(to top, rgba($grey5, 0.2) 0, rgba($grey5, 0) 3.2rem)
+            position: bottom
+            clip: border-box
+        &:not(:first-child) .module-header
+            border-top-width: 0.1rem
+
+    .l-brick > &
+        @extend %box
+        & ~ .module
+            // no double border between two modules inside one brick
+            border-top: none
+
+.module-body
+    position: relative
+    height: 100%
+    width: 100%
+    min-height: 3.8rem
+    margin: -1px // trick to extend module-overlay to full size of body, even when inner elements have margin set
+    padding: 1px
+    &:after  // prevent margin collapse
+        content: " "
+        overflow: hidden
+        display: block
+
+    .module-l-100
+        @include font-big
+        font-weight: 600
+        text-align: center
+        padding: 0.8rem
+    .l-brick &
+        min-height: 8rem
+
+.two-values-module
+    @include inline-block-nospace-container(".module-l-50", $fontsize-big)
+    .module-l-50
+        @include box-sizing(border-box)
+        font-weight: 600
+        text-align: center
+        vertical-align: baseline
+        width: 50%
+        padding: 0.8rem
+        position: relative
+        &:first-child
+            @include border(0 0.1rem 0 0, solid, $base-border-color)
+            @include border-image-gradient($white, $base-border-color, $image-gradient-w-g5)
+
+.module-overlay
+    @extend %full-stretch
+    display: none
+    z-index: 10
+    text-align: center
+    @include transition(opacity .5s linear)
+    &:before  // create transparent background
+        content: " "
+        z-index: -1
+        opacity: 0.8
+        @extend %full-stretch
+        background: $image-bg-pattern-grey6 $grey6
+        +box-shadow(inset 0 0 4rem rgba($grey4, 0.5))
+    &.is-displaying
+        display: block
+        opacity: 0
+    &.is-visible
+        opacity: 1
+    .center
+        display: inline-block
+        position: absolute
+        top: 50%
+        left: 50%
+        //width: 10rem
+        height: 2.4rem
+        width: 9.6rem
+        line-height: 2.4rem
+        margin: -1.6rem 0 0 -4.8rem
+        padding: 0.2rem 0
+        color: $white
+        text-align: center
+        +box-shadow(0 0 0.4rem $grey5)
+        +select-icons($postselector: ":before")
+            -moz-animation: pulse 2s infinite linear
+            -webkit-animation: pulse 2s infinite linear
+            animation: pulse 2s infinite linear
+
+.module-loading-overlay
+    .center
+        border: 0.1rem solid $midblue
+        background: rgba($midblue, 0.75)
+
+.module-unavailable-overlay
+    .center
+        color: $grey2
+        border: 0.1rem solid $grey4
+        background: rgba($grey5, 0.75)
+
+
+@-webkit-keyframes pulse
+    0%
+        opacity: 0
+    40%
+        opacity: 1
+    60%
+        opacity: 1
+    100%
+        opacity: 0
+
+@-moz-keyframes pulse
+    0%
+        opacity: 0
+    40%
+        opacity: 1
+    60%
+        opacity: 1
+    100%
+        opacity: 0
+
+@keyframes pulse
+    0%
+        opacity: 0
+    40%
+        opacity: 1
+    60%
+        opacity: 1
+    100%
+        opacity: 0
+
+
+@-webkit-keyframes fade-in
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+@-moz-keyframes fade-in
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
+
+
+

@@ -1,0 +1,23 @@
+<fieldset>
+    <legend class="tool-section-header">Time</legend>
+    <div class="tool-section-toolbox">
+        <div class="mini-tool" {{action "reset"}}>
+            <i class="icon-12 icon-history tooltip" title="restore"></i>
+        </div>
+        <div class="mini-tool" {{action "clear"}}>
+            <i class="icon-12 icon-close tooltip" title="clear"></i>
+        </div>
+    </div>
+    <div class="tool-subsection-header">
+        {{radio-button name="time-type" value="absolute" label="Range" selection=type}}
+        &nbsp;&nbsp;
+        {{radio-button name="time-type" value="relative" label="Relative" selection=type}}
+    </div>
+    {{#if relativeSelected}}
+        <label>the last {{input type='text' value=intervalValue size=5}}</label>
+        {{view Ember.Select content=intervalUnits value=intervalUnit}}
+    {{else}}
+        <label>from: {{date-time-input time=startTime}}</label><br>
+        <label>to: {{date-time-input time=endTime}}</label>
+    {{/if}}
+</fieldset>

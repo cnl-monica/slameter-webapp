@@ -1,0 +1,18 @@
+<header class="module-header">
+    <div class="module-toolbox">
+        {{unbound partial toolboxTemplate}}
+    </div>
+    <h3 class="truncated">{{model.title}}</h3>
+</header>
+
+{{#view "tools" class="module-tool-container"}}
+    {{unbound partial toolsTemplate}}
+{{/view}}
+
+{{render "messenger" messages class="module-messenger" autoClose=false}}
+
+<div class="module-body">
+    {{unbound partial bodyTemplate}}
+    {{module-loading-overlay isVisibleWhen=isLoading}}
+    {{module-unavailable-overlay isVisibleWhen=isUnavailable}}
+</div>

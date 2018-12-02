@@ -1,0 +1,77 @@
+.onoffswitch
+    $height: 2.2rem
+
+    display: inline-block
+    vertical-align: top
+    border: 0.1rem solid $midblue
+    height: $height
+    background: $grey7 //linear-gradient(to top, $grey7 0%, $grey6 100%) $grey7
+    position: relative
+    cursor: pointer
+    @include border-radius
+
+    & > div
+        margin: 0 0.2rem
+
+
+    .outer-switch
+        position: relative
+        display: inline-block
+        width: 4.6rem
+        height: $height
+        box-shadow: inset 0 0 0.2rem $grey4
+        overflow: hidden
+        margin: 0
+
+    .inner-switch
+        border: 0.1rem solid $midblue
+        @include border-radius
+        background: $lightblue
+        width: 1.6rem
+        height: 1.6rem
+        position: absolute
+        left: 0
+        margin: 0.2rem
+        @include box-shadow(0.1rem 0.1rem 0 rgba($midblue, 0.2))
+        @include transition(all 0.1s ease)
+
+        &:before, &:after
+            @include font-small
+            position: absolute
+            line-height: 16px // px?? IE... :(
+            height: 1.6rem
+            top: 0
+
+        &:before
+            content: "ON"
+            color: $darkblue
+            left: -2.2rem
+
+        &:after
+            content: "OFF"
+            color: $darkred
+            left: 2rem
+
+        &.is-on
+            background: linear-gradient(to bottom, rgba(lighten($lightblue, 10%), 0.5) 0%, rgba($lightblue, 0.5) 100%), $image-bg-pattern-lightblue
+            left: 2.4rem
+
+        &.is-off
+            background: linear-gradient(to bottom, rgba(lighten($lightred, 10%), 0.2) 0%, rgba($lightblue, 0.5) 100%), $image-bg-pattern-lightblue
+            left: 0
+
+    .switch-label
+        color: $grey1
+        display: inline-block
+        @include font-small
+        height: $height
+        vertical-align: text-bottom
+
+    .switch-label ~ .outer-switch
+        border-left: 0.1rem solid $midblue
+
+    &:hover
+        .inner-switch.is-on
+            @include box-shadow(0.1rem 0.1rem 0 rgba($midblue, 0.2), inset 0 0 0.8rem rgba($lightblue, 0.3))
+        .inner-switch.is-off
+            @include box-shadow(0.1rem 0.1rem 0 rgba($midblue, 0.2), inset 0 0 0.8rem rgba($lightred, 0.3))

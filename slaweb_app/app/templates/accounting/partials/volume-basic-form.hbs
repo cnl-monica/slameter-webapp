@@ -1,0 +1,142 @@
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Base Volume&nbsp;:&nbsp;</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=base_volume  size="40" maxlength="18" placeholder="for example: 104857600" }}
+            {{view "select" content=base_volume_select optionValuePath="content.val" optionLabelPath="content.label" value=base_volume_unit}}
+        </td>
+
+        <td class="column-error">
+            {{#if baseVolumeError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input ! Use Integer !</span>{{else}} <span class="form-info">  </span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Base Cost&nbsp;:&nbsp;</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=base_volume_cost size="50" maxlength="8" placeholder="for example: 5.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if baseVolumeCostError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input ! Use number like 5.23 !</span>
+            {{else}}
+                {{# if base_volume_cost}}
+                        {{#if base_volume}}
+                            {{#unless baseVolumeError}}
+                                <span class="form-info"> {{base_volume_cost}} EUR for first {{as-data base_volume input_unit=base_volume_unit}} </span>
+                            {{/unless}}
+                        {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Additional Volume&nbsp;:&nbsp;</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=additional_volume  size="40" maxlength="18" placeholder="for example: 104857600" }}
+            {{view "select" content=base_volume_select optionValuePath="content.val" optionLabelPath="content.label" value=additional_volume_unit}}
+        </td>
+
+        <td class="column-error">
+            {{#if additionalVolumeError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input ! Use Integer !</span>{{else}} <span class="form-info"> (Optional)</span>{{/if}}
+        </td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Additional Cost&nbsp;:&nbsp;</span>
+        </td>
+
+        <td class="column-value">
+            {{input type="text" value=additional_volume_cost size="50" maxlength="8" placeholder="for example: 5.23" }}
+        </td>
+
+        <td class="column-error">
+            {{#if additionalVolumeCostError}}
+                <span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;Bad input ! Use number like 5.23 !</span>
+            {{else}}
+                    {{# if additional_volume_cost}}
+                        {{#if additional_volume}}
+                            {{#unless additionalVolumeError}}
+                                <span class="form-info"> {{additional_volume_cost}} EUR for every next {{as-data additional_volume input_unit=additional_volume_unit}} </span>
+                            {{/unless}}
+                        {{/if}}
+                    {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Calculation type&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view "select" content=calcVolumeTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentVolumeCalcType}}
+
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+    <tr><td></td>
+        <td>
+            <div class="volumeDesc">{{desc_volume}}</div>
+        </td>
+        <td></td>
+    </tr>
+    {{#if basic_interval}}
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+            <span>Time interval&nbsp;:</span>
+        </td>
+
+        <td class="column-value">
+            {{view "select" content=calcIntervalSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentCalcInterval}}
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+                {{#if show_calendar}}
+
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+        </td>
+
+        <td class="column-value">
+
+            <div class="calendars">
+                 <label>From&nbsp;:&nbsp;{{date-time-input time=startTime}}</label>
+            </div>
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+    <tr class="basic-tr">
+        <td class="column-label-basic-vol">
+        </td>
+
+        <td class="column-value">
+
+            <div class="calendars">
+                 <label>To&nbsp;:&nbsp;{{date-time-input time=endTime}}</label>
+            </div>
+        </td>
+
+        <td class="column-error">
+        </td>
+    </tr>
+     {{/if}}
+    {{/if}}

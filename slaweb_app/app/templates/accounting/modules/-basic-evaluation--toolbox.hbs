@@ -1,0 +1,7 @@
+{{#if canBeExpandedInWall}}
+    {{toolbox-button-toggler toolName="brickExpandTook" action="expandInWall" isActive=expandedInWall icon="embed" title="expand"}}
+{{/if}}
+{{#if evaluated }}
+    {{toolbox-button toolName="reloadTool" action="reload" icon="spinner-5" title="Reload"}}
+    {{toolbox-button action="new_parameters" icon="forward" title="Change parameters"}}
+{{/if}}

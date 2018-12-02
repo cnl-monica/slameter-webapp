@@ -1,0 +1,22 @@
+
+        <p class="big-text2">Evaluation parameters:</p>
+            <div class="bill-info-section">
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Calculation type</p></div><div class="texts"><p class="atribute2-text">{{ calc_type.label }} </p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">From: - To:</p></div><div class="texts"><p class="atribute2-text">{{ timeFrom }} - {{ timeTo }}</p></div></div>
+            </div>
+            <div class="bill-info-section">
+                <div class="left-billing">
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Base {{#if speed_form_part}}speed{{else}}volume{{/if}}:</p></div><div class="texts"><p class="atribute2-text">{{#if speed_form_part}}{{as-bps-data base_speed input_unit=base_speed_unit}}{{else}}{{as-data base_volume input_unit=base_volume_unit}}{{/if}}</p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Base cost:</p></div>    <div class="texts"><p class="atribute2-text">{{#if speed_form_part}}{{ base_speed_cost }}{{else}}{{ base_volume_cost }}{{/if}}EUR</p></div></div>
+                        <br />
+                </div >
+                <div class="right-billing">
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Additional {{#if speed_form_part}}speed{{else}}volume{{/if}}:</p></div><div class="texts"><p class="atribute2-text">{{#if speed_form_part}}{{as-bps-data additional_speed input_unit=additional_speed_unit}}{{else}}{{as-data additional_volume input_unit=additional_volume_unit}}{{/if}}</p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Additional cost:</p></div>    <div class="texts"><p class="atribute2-text">{{#if speed_form_part}}{{ additional_speed_cost }}{{else}}{{ additional_volume_cost }}{{/if}}EUR</p></div></div>
+                    <br />
+                </div >
+                <br>
+            </div>
+
+
+        <p class="big-text">Evaluation Results:</p>

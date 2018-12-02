@@ -1,0 +1,66 @@
+// Tooltipster themes used for dropdowns
+
+.dropdown-theme
+    background: $image-bg-pattern-grey7 $grey7
+    border: 0.1rem solid $midblue
+    @include border-radius
+    +box-shadow(0 0 0.4rem rgba($grey3, 0.5))
+    .tooltipster-content
+        @include font-base
+        line-height: 1.3
+        overflow: hidden
+        padding: 0.8rem
+
+.dropdown-theme-topbar
+    @extend .dropdown-theme
+    background: $image-bg-pattern-midgreen $midgreen
+    border: 0.1rem solid $darkgreen
+    color: $white
+    .tooltipster-content
+        font-weight: 300
+        padding: 0.4rem 0
+
+.dropdown-theme-with-header
+    @extend .dropdown-theme
+    .tooltipster-content
+        padding: 0
+    .header
+        color: $midblue
+        font-size: $fontsize-big
+        text-decoration: underline
+        text-align: center
+        font-variant: small-caps
+        padding: 0.4rem
+
+.dropdown-theme-forms
+    @extend .dropdown-theme
+    .tooltipster-content
+        display: block
+        pointer-events: auto
+        .panel
+            border-top: 1px solid $midblue
+            padding: 0.8rem
+            text-align: right
+            margin: 0.8rem -0.8rem -0.8rem
+        //.hours, .minutes
+            border: 1px solid $base-border-color
+            background: $white $image-bg-pattern-white
+            width: 120px
+            padding: 0.1rem
+            margin-bottom: 0.4rem
+        //.hour, .minute
+            +font-small
+            color: $grey2
+            line-height: 16px
+            display: inline-block
+            width: 16px
+            height: 16px
+            border: 1px solid $base-border-color
+            background: $grey5 $image-bg-pattern-grey5
+            margin: 0.1rem
+            text-align: center
+
+
+// tag used as trigger for dropdown to show itself
+.dropdown-trigger
+    cursor: pointer

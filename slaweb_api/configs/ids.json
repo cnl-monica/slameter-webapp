@@ -1,0 +1,49 @@
+{
+    "common": {
+        "iconClass": "icon-bullhorn"
+    },
+    "provider": {
+        "sections": [
+            {
+                "name": "monitoring",
+                "title": "Monitoring",
+                "modules": {
+                    "wall": [
+                        "IdsSynFloodAttack",
+                        "IdsSynFloodAttackProbability",
+                        "IdsUdpFloodAttack",
+                        "IdsUdpFloodAttackProbability",
+                        "IdsPortScanAttack",
+                        "IdsPortScanAttackProbability",
+                        "IdsRstFloodAttack",
+                        "IdsRstFloodAttackProbability",
+                        "IdsTtlFloodAttack",
+                        "IdsTtlFloodAttackProbability",
+                        "IdsFinFloodAttack",
+                        "IdsFinFloodAttackProbability"
+                    ],
+                    "summary": [],
+                    "navigation": [
+                        "IdsSynNavigation",
+                        "IdsUdpNavigation",
+                        "IdsPortNavigation",
+                        "IdsRstNavigation",
+                        "IdsTtlNavigation",
+                        "IdsFinNavigation"
+                    ]
+                }
+            },
+            {
+                "name": "attackLogs",
+                "title": "Attack logs",
+                "modules": {
+                    "wall": [
+                        "AttackLogs"
+                    ],
+                    "summary": [],
+                    "navigation": []
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "common": {
+        "iconClass": "icon-coin"
+    },
+    "provider": {
+        "onlyGlobalFilters": ["ExporterFilter"],
+
+        "sections": [
+              {
+                "name": "bill-plans",
+                "title": "Billing plans",
+                "modules": {
+                    "wall": [
+                        "BillPlans",
+                        "BillReports"
+                    ],
+                    "summary": [
+                    ],
+                    "navigation": [
+                    ]
+                }
+             },
+             {
+                "name": "summary",
+                "title": "Summary",
+                "modules": {
+                    "wall": [
+                          "CompareUsers"
+                    ],
+                    "summary": [
+
+                    ],
+                    "navigation": [
+                    ]
+                }
+            },
+            {
+                "name": "basic-billing",
+                "title": "Basic billing",
+                "modules": {
+                    "wall": [
+                      "BasicEvaluation"
+                    ],
+                    "summary": [
+                    ],
+                    "navigation": [
+                      "accusers",
+                      "addresses"
+                    ]
+                }
+            },
+            {
+                "name": "criteria-billing",
+                "title": "Criteria billing",
+                "modules": {
+                    "wall": [
+                          "AccountingCriteria",
+                          "CriteriaEvaluation"
+                    ],
+                    "summary": [
+                    ],
+                    "navigation": [
+                        "accusers",
+                        "addresses"
+                    ]
+                }
+            }
+        ]
+    },
+    "client": {
+        "sections": [
+            {
+                "name": "accounting-plans",
+                "title": "Accounting plans",
+                "modules": {
+                    "wall": [
+                        "BillPlans",
+                        "BillReports"
+                    ],
+                    "summary": [],
+                    "navigation": []
+                }
+            },
+            {
+                "name": "basic-billing",
+                "title": "Check Basic bill",
+                "modules": {
+                    "wall": [
+                      "BasicEvaluation"
+                    ],
+                    "summary": [
+                    ],
+                    "navigation": []
+                }
+            },
+            {
+                "name": "criteria-billing",
+                "title": "Check Criteria bill",
+                "modules": {
+                    "wall": [
+                          "AccountingCriteria",
+                          "CriteriaEvaluation"
+                    ],
+                    "summary": [],
+                    "navigation": []
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{{#if form}}
+     <div class="vol-speed-billing">
+
+        <table class="volBasFormTable" align="center">
+            <thead></thead>
+            <tbody>
+               <tr class="basic-tr">
+                   <td class="column-label-basic-vol">
+                       <span id="bill-type">Billing type&nbsp;:</span>
+                   </td>
+                   <td class="column-value">
+                        {{view "select" content=billTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentBillType}}
+                   </td>
+               </tr>
+               {{#if speed_form_part}}
+                    {{partial 'accounting/partials/speed-basic-form'}}
+               {{/if}}
+
+               {{#if volume_form_part}}
+                    {{partial 'accounting/partials/volume-basic-form'}}
+               {{/if}}
+                    <tr class="basic-tr">
+                        <td class="column-label-basic-vol">
+                        </td>
+                        <td class="apply_button">
+                            <button {{bind-attr disabled=disabled_apply}} {{action "apply"}}> Apply </button>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+
+    </div>
+{{/if}}
+{{#if evaluated}}
+    <div class="content">
+        <div class="content">
+{{#if speed_graph}}
+     {{partial 'accounting/partials/speed-basic-graph'}}
+
+     <div class="module-header"><h3>Usage-Based Billing - 95th percentile Speed type</h3></div>
+     <br>
+     {{partial 'accounting/partials/billing-client-info'}}
+     {{partial 'accounting/partials/basic_eval_info'}}
+     {{95th-percentile-table evaluatedData=model.evaluatedData}}
+{{else}}
+     <h3 id="volumeResultsH3">Usage-Based Billing - Volume type </h3>
+     {{partial 'accounting/partials/billing-client-info'}}
+     {{partial 'accounting/partials/basic_eval_info'}}
+     {{volume-table evaluatedData=model.evaluatedData}}
+{{/if}}
+      {{partial 'accounting/partials/billing-pdf-section'}}
+        </div>
+    </div>
+{{/if}}

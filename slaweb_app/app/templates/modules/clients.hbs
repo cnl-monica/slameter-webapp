@@ -1,0 +1,30 @@
+<header class="sidebar-nav-header">
+    <div class="nav-toolbox">
+        {{toolbox-button-toolopener toolName="searchTool" action="toggleTool" icon="search" title='search'}}
+    </div>
+    <h3>Clients</h3>
+</header>
+<div {{bind-attr class=":nav-tool-container isAnyToolOpened:is-expanded"}}>
+    <form class="tool">
+        <div class="tool-content-with-margin">
+            {{iconed-formfield type="search" icon="search" placeholder="search" value=searchedValue}}
+            <br><br>
+            {{checkbox-button label="Show only clients for active exporter" checked=filterByExporter}}
+        </div>
+    </form>
+</div>
+{{#pinnable-navlist}}
+    {{#unless content.isLoading}}
+        {{#each client in filteredContent}}
+            <li class="navlist-item">
+                {{#link-to (query-params client=client.ip_address exporter=client.exporter.exporter_id) class="navlist-item-target"}}
+                    {{client-info client=client}}
+                {{/link-to}}
+            </li>
+            {{else}}
+                <div style="line-height: 2.4rem; text-align: center;">No clients</div>
+        {{/each}}
+        {{else}}
+            <div style="line-height: 2.4rem; text-align: center;">loading ...</div>
+    {{/unless}}
+{{/pinnable-navlist}}

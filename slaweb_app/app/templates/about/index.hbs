@@ -1,0 +1,328 @@
+<div class="l-constrained">
+
+{{!--     <div class="l-main"> --}}
+{{#if langSk}}
+
+    <div class="l-main-sk">
+
+        <h1>SLAmeter</h1>
+
+        <br />
+        <h3>Úvod</h3>
+
+        <p>
+            SLAmeter je nástroj na meranie sieťovej prevádzky, ktorý predstavuje alternatívne riešenie pre nástroje na monitorovanie sieťovej prevádzky,
+            založených na IPFIX protokole. Hlavným cieľom nástroja SLAmeter je ponúknuť spoľahlivú možnosť sledovať spĺňanie podmienok stanovených
+            v dohode o úrovni poskytovania služieb medzi zákazníkom a poskytovateľom.
+            SLAmeter bo navrhnutý ako rozšírenie nástroja BasicMeter a skladá sa z niekoľkých komponentov v rôznych vrstvách.
+        </p>
+
+        <p>
+            SLAmeter je vyvíjaný výskumnou skupinou MONICA v Laboratóriu počítačových sietí na Technickej Univerzite v Košiciach.
+            <br/>(Monitoring a optimalizácia sieťovej infraštruktúry, komunikácií a aplikácií)
+        </p>
+
+        <p>
+            <b>SLA</b> - je dokument, ktorý definuje vzťah medzi poskytovateľom internetového pripojenia a zákazníkom.
+            <br />Význam tohto dokumentu je daný tým, že môže pomôcť:
+        </p>
+        <ul>
+            <li>určiť a definovať požiadavky zákazníka,</li>
+            <li>poskytnúť spôsob pre ľahšie pochopenie,</li>
+            <li>zjednodušiť zožité problémy,</li>
+            <li>zmenšiť problémové oblasti,</li>
+            <li>podporiť komunikáciu v prípade problémov,</li>
+            <li>eliminovať nereálne očakávania.</li>
+        </ul>
+
+        <p>
+            Architektúra nástroja SLAmeter pozostáva z viacerých komponentov.
+            Každý z nich vykonáva čiastkovú úlohu, ktorá je nevyhnutná pre prúslušnú operáciu a funkčnosť samotného nástroja.
+        </p>
+
+        <hr class="hr-about"/>
+        <h3>O nástroji SLAmeter</h3>
+
+        <p>
+            Nástroj SLAmeter je založený na svojom predchodcovi, teda nástroji BasicMeter.
+            Prvá verzia nástroja BasicMeter bola vyvinutá s podporou protokolu NetFlow.
+            Neskôr, s vydaním protokolu IPFIX, bol nástroj rozšírený o podporu protokolu IPFIX a bolo vytvorené nové grafické používateľské rozhranie (GUI).
+            Koncept tohto nástroja je v súlade s konformitou IPFIX architektúry a je spätne kompatibilný s protokolom NetFlow verzie v5 a v9.
+        </p>
+
+        <p>
+            Počas svojho vývoja bol hlavný dôraz kladený nielen na napodobenie nástrojov, ako sú "merače rýchlosti internetu",
+            ale s bohatými funkciami a širokou škálou merateľných parametrov ponúka jedinečné riešenie pre zákazníkov internetu, rovnako ako poskytovateľov.
+            Vzhľadom na to, že požiadavky v oblasti SLA sa dynamicky rozvíjajú, rozhodli sme sa navrhnúť modulárnu architektúru nástroja SLAmeter.
+            Vyhodnocovač a webové rozhranie sa skladajú z rámca a z bližšie neurčeného počtu vnorených modulov.
+        </p>
+
+        <p>
+            <b>Architektúra nástroja SLAmeter sa skladá z piatich hlavných komponentov:</b>
+        </p>
+
+        <ol>
+
+            <li>Exportér</li>
+            <p>
+                Exportér je zariadenie ktoré je hostiteľom jedného alebo viacerých exportovacích procesov.
+                Každý exportér posiela záznamy o tokoch jednému alebo viacerým kolektorom.
+                Tieto záznamy sú generované meracími procesmi.
+                Merací proces pozostáva zo súboru funkcií, ktorý zahŕňa zachytávanie paketov, filtrovanie, časové značenie, vzorkovanie, triedenie,
+                vytváranie a uchovávanie záznamov o tokoch v pamäti.
+                Výsledné záznamy o tokoch sú posielané od exportéra IPFIX protokolom.
+            </p>
+
+            <li>Kolektor</li>
+            <p>
+                Kolektor je zariadenie ktoré je hostiteľom zberného procesu a ktoré prijíma záznamy o tokoch od jedného alebo viacerých exportovacích procesov
+                vo forme NetFlow protokolu verzie v5, v9, alebo vo forme protokolu IPFIX.
+                Tieto záznamy môžu byť buď uložené v databáze pre budúce použitie alebo analýzu, a / alebo priamo zasielané jednému alebo viacerým analyzujúcim
+                aplikáciám protokolu ACP (Analyzer-Collector Protocol).
+            </p>
+
+            <li>Úložisko</li>
+            <p>
+                Úložisko je databáza nástroja SLAmeter. Pre účel databázy bola zvolená MongoDB datatabáza, namiesto predchádzajúcej PostgreSQL databázy.
+                MongoDB je databáza s otvoreným zdrojovým kódom a nachádza sa na poprednom mieste spomedzi NoSQL databáz.
+                MongoDB je napísaná v jazyku C++ a ponúka množstvo funkcií, ako napríkald:
+            </p>
+            <dl>
+                <dt>Dokumentovo-orientované úložisko</dt>
+                <dd>Dáta v MongoDB majú flexibilnú schému. Kolekcie nepresadzujú štruktúru dokumentu. Táto flexibilita poskytuje možnosti pre dátové modelovanie
+                    aplikácií a ich požiadavky na výkon.</dd>
+
+                <dt>Plná podpora indexovania</dt>
+                <dd>Indexy poskytujú vysoký výkon operácií čítania z databázy pre často vyhľadávané dopyty.</dd>
+
+                <dt>Agregácia</dt>
+                <dd>Agregácia sú perácie ktoré spracovávajú záznamy v databáze a vracajú vypočítané výsledky.
+                    MongoDB databáza poskytuje bohaté možnosti dátových operácií, ktoré analyzujú a vykonávajú výpočty dátových súborov.</dd>
+            </dl>
+
+            <p>
+                Jedna z najväčších výhod tejto databázy je flexibilita jej licencie, ktorá umožňuje nie len samotné použitie MongoDB databázy,
+                ale aj jej úpravu a distribúciu zdarma akoukoľvek osobou pre akýkoľvek účel.
+            </p>
+
+            <li>Vyhodnocovač</li>
+            <p>
+                Vyhodnocovač je aplikácia, ktorej primárnym cieľom je pripraviť dáta pre webové rozhranie nástroja SLAmeter.
+                Vyhodnocovač, na základe určitých požiadaviek, spracováva IPFIX záznamy z databázy a vytvára štatistické a analytické informácie o povahe
+                monitorovanej sieťovej prevádzky.
+                Vzhľadom na to, že nástroj SLAmeter je plánovaný pre široké aplikačné nasadenie, je nemožné definovať celú jeho funkcionalitu počas jeho návrhu.
+                Z tohto dôvodu je jeho architektúra modulárna, čo znamená, že sa skladá z rámca a sady vnorených komponentov.
+                Komponenty vypočítavajú vstupné dáta a poskytujú ich ďalej v jednoduchej číselnej podobe, z ktorej rámec následne generuje odpovede.
+                Vyhodnocovač vytvára odpovede na požiadavky na základe zadaného formulára.
+            </p>
+
+            <p>
+                <img src="/assets/images/Nova_Architektura.jpg" alt="obrazok vyhodnocovac-architektura">
+                <img src="Nova_Architektura.jpg" alt="obrazok vyhodnocovac-architektura" align="center" />
+            </p>
+
+
+            <li>Webové rozhranie</li>
+            <p>
+                Webové rozhranie nástroja je webová aplikácia, ktorej hlavnou úlohou je vytvoriť rozhranie pre komunikáciu medzi používateľom a nástrojom SLAmeter.
+                Vývoj webového rozhrania bol založený na analýze technológií pre tvorbu modulárnych aplikácií.
+                Výsledky tejto analýzy boli taktiež použité pri rozhodovaní o voľbe rámca webového rozhrania.
+                Nakoniec bol zvolený programovací jazyk Python a Django rámec.
+            </p>
+
+            <ul>
+
+                <li>Server webovej aplikácie</li>
+                <p>
+                    Hlavnou úlohou servera je získanie údajov spracovaných v iných častiach nástroja SLAmeter a ich poskytnutie webovému klientovi.
+                    Pri architektúre servera je dôležitá štruktúra aplikácie s modulmi a jadra, ktoré tieto aplikácie prepája,
+                    pričom poskytuje ďalšie prvky potrebné v rámci všetkých aplikácií.
+                    Takáto aplikácia je realizovaná ako Django aplikácia.
+                    Každá aplikácia v rámci servera bude obsahovať iný typ modulov. Preto aj jej špecifické požiadavky vzhľadom na tieto moduly sa môžu odlišovať.
+                </p>
+                <img src="/../public/assets/images/server-architektura-01.png" alt="obrazok server 1">
+                <p>
+                    Jadro webového servera je tvorené jednoduchou Django aplikáciou s názvom core,
+                    ktorej hlavnou úlohou je poskytovať správu používateľov a prepájať REST webové služby jednotlivých aplikácií s modulmi.
+                </p>
+                <img src="/../public/assets/images/server-architektura-02.png" alt="obrazok server 2">
+
+                <li>Klient webovej aplikácie</li>
+                <p>
+                    Klient webovej aplikácie vytvára používateľské rozhranie nástroja SLAmeter. Realizovaný je pomocou JavScript MVC frameworku Ember.
+                    Primárny spôsob návrhu architektúry aplikácie týmto frameworkom je pomocou definície hierarchie trás (angl. routes),
+                    ktoré zodpovedajú URL adresám, a hierarchie pohľadov, ktoré trasám prislúchajú.
+                    Trasy vo frameworku Ember predstavujú špeciálny typ riadičov (controller),
+                    ktorých úlohou je riadiť prechody medzi hierarchiami pohľadov a zaznamenávať aktuálne zobrazený stav aplikácie do URL adresy.
+                    Dôležitým aspektom pri tvorbe Ember aplikácie sú menné konvencie.
+                    Tie určujú mená / umiestnenia JavaScript modulov, ktoré, ak sú dodržané,
+                    sú automaticky vložené na požadované miesta technikou zvanou vkladanie závislostí (angl. dependency injection).
+                </p>
+                <img src="/../public/assets/images/klient-architektura-01.png" alt="obrazok klient 1">
+                <img src="/../public/assets/images/klient-architektura-02.png" alt="obrazok klient 2">
+
+            </ul>
+
+        </ol>
+
+    </div>
+
+{{else}}
+
+    <div class="l-main">
+
+        <h1>SLAmeter</h1>
+
+        <br />
+        <h3>Introduction</h3>
+
+        <p>
+            SLAmeter is network metering tool, which constitutes an alternative solution to the network traffic monitoring tools based on the IPFIX protocol.
+            The main purpose of the SLAmeter is to offer a reliable possibility to track and fulfill the conditions specified in the Service Level Agreement
+            subscribed between the subscriber and provider. SLAmeter was designed with the extension of the BasicMeter tool
+            and consists of several components on different layers.
+        </p>
+
+        <p>
+            SLAmeter is being developed by the MONICA research group in the Computer Networks Laboratory at the Technical University in Kosice.
+            <br/>(Monitoring and optimization of network infrastructures and applications)
+        </p>
+
+        <p>
+            <b>SLA</b> - is a document, which defines the relation between the subscriber and the provider.
+            <br />The importance of this document is given by the fact, that it can help to:
+        </p>
+        <ul>
+            <li>identify and define the requirements of subscriber,</li>
+            <li>provide a method for easier understanding,</li>
+            <li>simplify complex problems,</li>
+            <li>reduce conflict areas,</li>
+            <li>promote the dialogue in case of conflicts,</li>
+            <li>eliminate unrealistic expectations.</li>
+        </ul>
+
+        <p>
+            The architecture of the SLAmeter consist of several components. Each of them performs a sub-task, which is necessary for appropriate
+            operation and functionality of the tool.
+        </p>
+
+        <hr class="hr-about"/>
+        <h3>About SLAmeter tool</h3>
+
+        <p>
+            SLAmeter is based on its predecessor, the BasicMeter tool. The first version of BasicMeter was developed with only
+            NetFlow protocol support. Later, with the release of the IPFIX protocol,
+            the tool was extended with IPFIX support and given a new Graphical User Interface (GUI).
+            The concept of the tool is in conformance to the IPFIX architecture, while it is backward compatible with the NetFlow v5 and v9 protocols.
+        </p>
+
+        <p>
+            During its development a main emphasis was not only on to imitate tools like network ’speedmeters’,
+            but with its rich functionalities and wide range of measurable parameters to offer a unique solution for Internet subscribers,
+            as well as providers. Since the requirements in the SLA area are developing dynamically, we have decided to design the modular architecture tool.
+        </p>
+
+        <p>
+            <b>The architecture of the SLAmeter has five main components:</b>
+        </p>
+
+        <ol>
+
+            <li>Exporter</li>
+            <p>
+                The exporter is a device that hosts one or more exporting processes.
+                Each exporter is sending flow records to one or more collectors.
+                The flow records are generated by the metering processes.
+                The metering process consists of a set of functions that includes packet capturing, filtering, timestamping, sampling, classifying,
+                creating and maintaining of flow records in the flow cache. The final flow records are exported from the exporters by the IPFIX protocol.
+            </p>
+
+            <li>Collector</li>
+            <p>
+                The collector is a device that hosts a collecting process,
+                which receives flow records from one or more exporting processes in the format of NetFlow v5, v9 or IPFIX protocol.
+                Flow records can be stored in a database for future use or analysis and/or directly sent to one or more analyzing applications
+                by the Analyzer–Collector Protocol (ACP)
+            </p>
+
+            <li>Data storage</li>
+            <p>
+                It is the SLAmeter’s data storage. As data storage, MongoDB was chosen, instead of PostgreSQL database used before.
+                MongoDB is an open-source document database, and the leading NoSQL database. MongoDB is Written in C++ and provides a lot of features,
+                like:
+            </p>
+            <dl>
+                <dt>Document-Oriented Storage</dt>
+                <dd>Data in MongoDB has a flexible schema. Collections do not enforce document structure.
+                    This flexibility gives you data-modeling choices to match your application and its performance requirements.</dd>
+
+                <dt>Full Index Support</dt>
+                <dd>Indexes provide high performance read operations for frequently used queries.</dd>
+
+                <dt>Aggregation</dt>
+                <dd>Aggregations are operations that process data records and return computed results.
+                    MongoDB provides a rich set of aggregation operations that examine and perform calculations on the data sets.</dd>
+            </dl>
+
+            <p>
+                One of the greatest advantage of this database is the flexibility of its license, which allows PostgreSQL to be used,
+                modified and distributed for free by any person for any purpose.
+            </p>
+
+            <li>Evaluator</li>
+            <p>
+                The Evaluator is an application whose primary goal is to prepare the data for the web interface of the SLAmeter tool.
+                The Evaluator – on the basis of some requirements – processes the IPFIX records from the database
+                and creates statistical and analytical information about the nature of the monitored network traffic.
+                Since the SLAmeter is planned for a wide application deployment, it is impossible to define its whole functionality during its design.
+                For this reason its architecture is modular, i.e. it consists of a framework and a set of embeddable components.
+                The components calculate the given data and provide them in a simple numeric form,
+                from which the framework subsequently generates the responses.
+                Evaluator creates responses on the requests in the base of this form.
+            </p>
+
+            <li>Web interface</li>
+            <p>
+                The web interface of the tool is a web application,
+                whose main task is to create the interface for the communication between the user and SLAmeter.
+                The development the Web Interface was based on the analysis of technologies for modular applications.
+                The results of this analysis were also used during the decision for the framework of the Web Interface.
+                The Python programming language and the Django framework has been finally chosen.
+            </p>
+
+            <ul>
+
+                <li>Server of web application</li>
+                <p>
+                    The main purpose of the server is getting data processed in other parts of SLAmeter and providing them to web client.
+                    At the server architecture is an important structure of application with modules and core, that connects these applications,
+                    while providing additional features necessary in all applications.
+                    This application is realised as Django application.
+                    Every application of server contains other type of modules. Therefore, the specific requirements of application with regard to modules may vary.
+                    The core of web server consists of a simple Django application called core,
+                    whose main task is to provide user management and interconnect REST web services of individual applications with modules.
+                </p>
+
+                <li>Client of web application</li>
+                <p>
+                    The client of the web application creates user interface of SLAmeter. It's implemented by Javascript MVC Ember framework.
+                    Primary mode of design architecture of applications using this framework is the definition of a hierarchy of routes corresponding URL addresses,
+                    and hierarchy views that belong routes.
+                    Routes in the Ember framework is a special type of program controller,
+                    whose task is to manage the transitions between hierarchies of views, and record currently displayed application state into the URL.
+                    An important aspect in the creation of Ember applications are noun convention.
+                    They identify names / locations of JavaScript modules, which if observed,
+                    are automatically inserted to the desired location by technique called dependency injection.
+                </p>
+
+            </ul>
+
+        </ol>
+
+    </div>
+
+{{/if}}
+
+{{!--    </div> --}}
+
+</div>

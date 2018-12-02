@@ -1,0 +1,182 @@
+{{#if showPage}}
+<div align="left">
+<table class="volBasFormTable">
+<thead></thead>
+<tbody>
+
+    <tr class="basic-tr">
+        <tr><br></tr>
+
+        <tr>
+            <h3><span>Filter settings</span></h3>
+        </tr>
+
+        <tr>
+            <td class="column-label-basic-vol"  align="left">
+                <label>Records since: </label>
+            </td>
+
+            <td class="column-label-basic-vol">
+                {{date-time-input time=startTime}}
+            </td>
+
+            <td class="column-label-basic-vol">
+                <span>Attack type:</span>
+            </td>
+
+            <td class="column-value" align="right">
+                {{view "select" content=attacktype_select optionValuePath="content.val" optionLabelPath="content.label" value=currentType }}
+            </td>
+        </tr>
+    </tr>
+
+    <tr>
+        <td class="column-label-basic-vol"  align="left">
+            <label>Records till: </label>
+        </td>
+
+        <td class="column-label-basic-vol">
+            {{date-time-input time=endTime}}
+        </td>
+
+         <td class="column-label-basic-vol">
+            <span>Attack probability:</span>
+        </td>
+
+        <td class="column-value" align="right">
+            {{view "select" content=attack_prob optionValuePath="content.val" optionLabelPath="content.label" value=currentProb }}
+        </td>
+    </tr>
+
+
+    <tr class="basic-tr">
+        <td><br></td>
+    </tr>
+
+    <tr class="basic-tr">
+        <td></td>
+        <td></td>
+        <td align="right"></td>
+
+        <td class="apply_cancel_button" align="right">
+            <button  {{action "recompute"}}> Apply </button>
+            <button  {{action "cancel"}}> Cancel </button>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><br></td>
+    </tr>
+
+
+    <tr align="left">
+        <th><h3><span>Attack details:</span></h3></th>
+    </tr>
+
+    {{#if showDetailTable}}
+    <tr>
+        <td colspan="3" align="left">
+            {{#each detail in details}}
+                <table class="attacktDetails" align="center" width="80%" cellspacing="0" cellpadding="2">
+                    <tr><br></tr>
+
+                    <tr align="left">
+                        <th><font color="#8b0000">{{detail.attacktype}} attack details:</font></th>    <td></td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:</th>    <td>{{detail.date}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time start:</th>    <td>{{detail.starttime}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time end:</th>   <td>{{detail.endtime}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source IP address:</th>   <td>{{detail.srcip}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destination IP address:</th>   <td>{{detail.destip}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detail.shortattacktype}} count:</th>   <td>{{detail.count}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Probability:</th>   <td>{{detail.probability}}</td>
+                    </tr>
+
+                    <tr align="left">
+                        <td colspan="3">
+                            <table bgcolor="#bfe591" border="1" bordercolor="9bbf71" class="attacktDetails" align="center" width="90%" cellspacing="0" cellpadding="2">
+
+                                <tr align="left">
+                                    <th>Since</th>
+                                    <th>Till</th>
+                                    <th>Count</th>
+                                    <th>Probability</th>
+                                </tr>
+
+                                {{#each fromdetailtable in fromdetailtables}}
+                                    <tr align="left">
+                                        <td>{{fromdetailtable.since}}</td>
+                                        <td>{{fromdetailtable.till}}</td>
+                                        <td>{{fromdetailtable.count}}</td>
+                                        <td>{{fromdetailtable.probability}}</td>
+                                    </tr>
+                                {{/each}}
+                            </table>
+
+                        </td>
+                    </tr>
+
+                </table>
+            {{/each}}
+        </td>
+    </tr>
+    {{else}}
+    {{/if}}
+
+
+    <tr><td><br><br></td></tr>
+    <tr align="left">
+        <td><h3><span>Attack logs:</span></h3></td>
+    </tr>
+
+</tbody>
+
+</table>
+
+<table bgcolor="#bfe591" class="table2" align="center" width="92%" border="1" bordercolor="#9bbf71" cellpadding="2">
+    <tr align="center">
+        <th>Number</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Type</th>
+        <th>Probability</th>
+        <th>Attack details</th>
+    </tr>
+
+    {{#each log in logs}}
+        <tr class="basic-tr">
+            <td class="cellInfo" align="center">{{log.number}}</td>
+            <td class="cellInfo" align="center">{{log.date}}</td>
+            <td class="cellInfo" align="center">{{log.time}}</td>
+            <td class="cellInfo" align="center">{{log.attacktype}}</td>
+            <td class="cellInfo" align="center">{{log.probability}}%</td>
+            <td align="center" {{action 'showDetails' log.id}}><ins>Click to show details</ins></td>
+        </tr>
+    {{/each}}
+
+    <br>
+</table>
+<br><br>
+</div>
+{{/if}}

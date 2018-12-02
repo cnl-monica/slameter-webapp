@@ -1,0 +1,13 @@
+{{view 'topbar' class='l-topbar' templateName='topbar'}}
+
+{{view 'headerbar' class='l-headerbar' tagName='header' templateName='headerbar'}}
+
+{{outlet}}
+
+<footer class="l-footer">
+    <div class="l-constrained"></div>
+</footer>
+
+{{render 'messenger' class="global-messenger"}}
+
+{{outlet modal}}

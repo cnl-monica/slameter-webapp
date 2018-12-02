@@ -1,0 +1,33 @@
+{{#if users}}
+<h3 id="user-table-H3">Accounting Entities</h3>
+    <div class="content">
+    <div class="content">
+        <div class="report-content">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email/Login</th>
+                        <th>Name</th>
+                        <th>Organization</th>
+                        <th>IP Addresses</th>
+                        <th>Mac Addresses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each user in users}}
+                        <tr>
+                            <td><b>{{user.id}}</b></td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.organization}}</td>
+                            <td>{{split-string user.ip_addresses splitter=';'}}</td>
+                            <td>{{#if user.mac_addresses}}{{split-string user.mac_addresses splitter=';'}}{{else}}----NA----{{/if}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{/if}}

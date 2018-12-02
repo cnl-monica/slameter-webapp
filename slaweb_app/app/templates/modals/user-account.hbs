@@ -1,0 +1,14 @@
+{{#modal-dialog}}
+    <div class="modal-header">
+        <h3>Account settings</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Update password</h4>
+        <form style="text-align: right; display: inline-block;">
+            current password: {{input type="password" value=currentPassword error=invalidPassword}}<br>
+            <br>
+            new password: {{input type="password" value=newPassword error=passwordsDoesNotMatch}}<br>
+            repeat password: {{input type="password" value=checkPassword}}
+        </form>
+    </div>
+{{/modal-dialog}}

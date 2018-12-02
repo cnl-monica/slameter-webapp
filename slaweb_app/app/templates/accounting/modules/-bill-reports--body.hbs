@@ -1,0 +1,164 @@
+{{#if expanded}}
+<div class="content">
+    <div class="content">
+        <div class="report-content">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th class="col-8-percent">Generated</th>
+                        <th class="col-14-percent">Bill Period</th>
+                        <th class="col-20-percent">Plan Name</th>
+                        <th class="col-20-percent">Client</th>
+                        <th class="col-8-percent">Type</th>
+                        <th class="col-10-percent">Cost</th>
+                        <th class="col-5-percent">Success</th>
+                        <th class="col-15-percent">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        {{#each report in reports}}
+                <table class="report-table">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-8-percent">{{report.exec_time}}</td>
+                            <td class="col-14-percent">{{report.evaluated_data.intervalTimeFrom}} - {{report.evaluated_data.intervalTimeTo}}</td>
+                            <td class="col-20-percent plan-name-in-rep">{{report.plan_name}}</td>
+                            <td class="col-20-percent">{{report.user_short_desc}}</td>
+                            <td class="col-8-percent">{{report.plan.billing_type}}</td>
+                            <td class="col-10-percent">{{report.evaluated_data.total_sum}}</td>
+                            <td class="col-5-percent">
+                                {{#if report.success}}
+                                    <span class="icon-16-left icon-checkmark icon-look">
+                                    </span>
+                                {{else}}
+                                    {{#dropdown-menu tagName="div"}}
+
+                                        <div class="dropdown-trigger">
+                                            <span class="icon-16-left icon-notification icon-look"></span>
+                                        </div>
+                                            {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                                               <span class="report-errmsg"> {{report.errmsg}} </span>
+                                            {{/view}}
+
+                                    {{/dropdown-menu}}
+                                {{/if}}
+                            </td>
+                            <td class="col-15-percent">
+                                    <button class="report-button" {{action 'show_hide_report_data' report.id}}>
+                                {{#if report._data._showed}}
+                                        <span class="icon-16-left icon-arrow-up-2 icon-look"></span>
+                                {{else}}
+                                        <span class="icon-16-left icon-arrow-down-2 icon-look"></span>
+                                {{/if}}
+                                    </button>
+                                    <button class="report-button" {{action 'download_invoice' report.id}}>
+                                        <span class="non-icon-button"> PDF </span>
+                                    </button>
+                                {{#if isAdmin}}
+                                    <button class="report-button" {{action 'show_hide_remove_dialog' report.id}}>
+                                        <span class="icon-16-left icon-remove icon-look"></span>
+                                    </button>
+                                {{/if}}
+                            </td>
+                        </tr><tr>
+                        {{#if report._data._removeDialog}}
+                            <td colspan="8">
+                                        <div class="delete-message-bill-plans">
+                                            <h4>Are you sure ?</h4>
+                                            <p>Are you sure you want to delete the selected bill plan report?</p>
+                                            <button {{action 'delete_report' report.id}}>
+                                            Yes, I'm sure
+                                            </button>
+                                            <button {{action 'show_hide_remove_dialog' report.id}}>
+                                            Cancel
+                                            </button>
+                                        </div>
+                        {{/if}}</td></tr>
+                    </tbody>
+                </table>
+                {{#if report._data._showed}}
+                    {{#if report._data.criteria}}
+                        {{criteria-chart data=report._data.graph_data}}
+                            <div class="module-header"><h3>Usage-Based Billing for Accounting Criteria for selected bill plan</h3></div>
+                            <br>
+                        <div class="content">
+                            {{billing-information
+                            two_tariff=report.evaluated_data.billing_data.two_tariff
+                            timeFrom=report.evaluated_data.intervalTimeFrom
+                            timeTo=report.evaluated_data.intervalTimeTo
+                            fstTimeTariff=report.evaluated_data.intervalTimeFrom
+                            sndTimeTariff=report.evaluated_data.intervalTimeTo
+                            billingtabledata=report.evaluated_data.billing_data.data
+                            total_sum=report.evaluated_data.total_sum
+                            isAdmin=isAdmin
+                            user=report.user
+                            tagName='div'}}
+                            {{#if report}}
+                                <div class="bill-report-criteria-block">
+                                 <span>User Criteria are available: </span>
+                                    {{#if isAdmin}}
+                                        {{#link-to 'accounting.criteria-billing' (query-params accuser=report.user.id action="list" criteria='0')}}
+                                            <span class="bl-link bill-report-criteria">&nbsp;&nbsp;Here</span>
+                                        {{/link-to}}
+                                    {{else}}
+                                        {{#link-to 'accounting.criteria-billing'}}
+                                            <span class="bl-link bill-report-criteria">&nbsp;&nbsp;Here</span>
+                                        {{/link-to}}
+                                    {{/if}}
+                                </div>
+                            {{/if}}
+                        {{partial 'accounting/partials/billing-pdf-section'}}
+
+                        </div>
+                    {{/if}}
+                    {{#if report._data.speed}}
+                        <div class="content">
+                            <div class="content">
+                                {{percentile-chart data=report._data.graph_data}}
+                                    <div class="module-header"><h3>Usage-Based Billing - 95th percentile Speed type</h3></div>
+                                 <br>
+                                {{billing-user-info user=report.user}}
+                                {{basic-bill-eval-info
+                                timeFrom=report.evaluated_data.intervalTimeFrom
+                                timeTo=report.evaluated_data.intervalTimeTo
+                                calc_type=report.evaluated_data.calc_type
+                                speed_form_part=true
+                                additional_speed_cost=report.evaluated_data.tariff_costs.additional_cost
+                                additional_speed=report.evaluated_data.tariff_costs.additional_data
+                                base_speed_cost=report.evaluated_data.tariff_costs.base_cost
+                                base_speed=report.evaluated_data.tariff_costs.base_data}}
+
+                                {{95th-percentile-table
+                                evaluatedData=report.evaluated_data}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if report._data.volume}}
+                        <div class="content">
+                            <div class="content">
+                             <h3 id="volumeResultsH3">Usage-Based Billing - Volume type </h3>
+                             {{billing-user-info user=report.user}}
+                             {{basic-bill-eval-info
+                                timeFrom=report.evaluated_data.intervalTimeFrom
+                                timeTo=report.evaluated_data.intervalTimeTo
+                                calc_type=report.evaluated_data.calc_type
+                                speed_form_part=false
+                                additional_volume_cost=report.evaluated_data.tariff_costs.additional_cost
+                                additional_volume=report.evaluated_data.tariff_costs.additional_data
+                                base_volume_cost=report.evaluated_data.tariff_costs.base_cost
+                                base_volume=report.evaluated_data.tariff_costs.base_data}}
+                             {{volume-table evaluatedData=report.evaluated_data}}
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
+        {{/each}}
+        </div>
+    </div>
+</div>
+{{/if}}

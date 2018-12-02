@@ -1,0 +1,31 @@
+            <table class="bill-table" data-selection="2">
+                <thead>
+                        <th>Category</th>
+                        <th>Total</th>
+                        <th>Min</th>
+                        <th>Avg</th>
+                        <th>Max</th>
+                        <th>95th Percentile</th>
+                        <th>Costs</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="bold-td basic-table-td">Download - In</td>
+                    <td class="basic-table-td">{{as-data evaluatedData.download.download_total_bytes}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.download.min_download_bps}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.download.avg_download_bps}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.download.max_download_bps}}</td>
+                    <td rowspan="2" class="bold-td basic-table-td" >{{as-bps-data evaluatedData.billing_95_interval}}</td>
+                    <td rowspan="2" class="bold-td basic-table-td">{{evaluatedData.total_cost}} EUR</td>
+                </tr>
+                <tr>
+                    <td class="bold-td basic-table-td">Upload - Out</td>
+                    <td class="basic-table-td">{{as-data evaluatedData.upload.upload_total_bytes}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.upload.min_upload_bps}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.upload.avg_upload_bps}}</td>
+                    <td class="basic-table-td">{{as-bps-data evaluatedData.upload.max_upload_bps}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+

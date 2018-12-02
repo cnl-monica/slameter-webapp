@@ -1,0 +1,50 @@
+{
+    "common": {
+        "iconClass": "icon-pie"
+    },
+    "provider": {
+        "onlyGlobalFilters": ["ExporterFilter"],
+
+        "sections": [
+             {
+                "name": "summary-clients",
+                "title": "Summary and Clients",
+                "modules": {
+                    "wall": [
+                      "dpi",
+                      "ports",
+                      "protocols",
+                      "dscpclasses"
+                    ],
+                    "summary": [
+
+                    ],
+                    "navigation": [
+                      "appusers",
+                      "appaddresses"
+                    ]
+                }
+            }
+        ]
+    },
+    "client": {
+        "sections": [
+       {
+                "name": "summary-clients",
+                "title": "My applications",
+                "modules": {
+                    "wall": [
+                      "dpi",
+                      "ports",
+                      "protocols",
+                      "dscpclasses"
+                    ],
+                    "summary": [
+
+                    ],
+                    "navigation": []
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "common": {
+        "iconClass": "icon-bars"
+    },
+    "provider": {
+        "sections": [
+            {
+                "name": "history",
+                "title": "History",
+                "modules": {
+                    "wall": [
+                        "BandwidthHistory",
+                        "BandwidthHistoryPackets",
+                        "FlowHistory"
+                    ],
+                    "summary": [
+                        "TransferredData",
+                        "TransferredPackets",
+                        "AverageDataSpeed",
+                        "AveragePacketSpeed",
+                        "MaximumSpeed",
+                        "NumberOfFlows"
+                    ],
+                    "navigation": [
+                        "exporters"
+                    ]
+                }
+            },
+            {
+                "name": "history-clients",
+                "title": "Client History",
+                "modules": {
+                    "wall": [
+                        "HistoryOverview",
+                        "BandwidthHistory",
+                        "BandwidthHistoryPackets",
+                        "FlowHistory"
+                    ],
+                    "summary": [
+                        "TransferredData",
+                        "TransferredPackets",
+                        "AverageDataSpeed",
+                        "AveragePacketSpeed",
+                        "MaximumSpeed",
+                        "NumberOfFlows",
+                        "PingTime"
+                    ],
+                    "navigation": [
+                        "exporters",
+                        "clients"
+                    ]
+                }
+            },
+            {
+                "name": "real-time",
+                "title": "Real-time",
+                "modules": {
+                    "wall": [
+                        "ThroughputInBytes",
+                        "ThroughputInPackets",
+                        "PacketlossInBytes",
+                        "PacketlossInPackets"
+                    ],
+                    "summary": [],
+                    "navigation": []
+                }
+            }
+        ]
+    },
+    "client": {
+        "sections": [
+            {
+                "name": "client-history",
+                "path": "history",
+                "title": "History",
+                "modules": {
+                    "wall": [
+                        "HistoryOverview",
+                        "BandwidthHistory",
+                        "BandwidthHistoryPackets",
+                        "FlowHistory"
+                    ],
+                    "summary": [
+                        "ClientIp",
+                        ["TransferredData",
+                        "TransferredPackets"],
+                        ["AverageDataSpeed",
+                        "AveragePacketSpeed"],
+                        "MaximumSpeed",
+                        "NumberOfFlows",
+                        "PingTime"
+                    ],
+                    "navigation": []
+                }
+            }
+        ]
+    }
+}

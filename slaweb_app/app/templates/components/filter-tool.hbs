@@ -1,0 +1,15 @@
+{{#custom-scrollbar theme="blue-no-overlay" class=toolContentClass}}
+    {{yield}}
+{{/custom-scrollbar}}
+
+{{#unboundIf controlsAtBottom}}
+    <div class="tool-controls-bottom">
+        {{partial 'components/partials/filter-tool-controls'}}
+    </div>
+{{else}}
+    <div class="tool-controls-right">
+        <div class="place-down">
+            {{partial 'components/partials/filter-tool-controls'}}
+        </div>
+    </div>
+{{/unboundIf}}

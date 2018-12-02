@@ -1,0 +1,50 @@
+<div class="criteriaForm">
+    <h3 id="criteriaFormH3">Billing Plan Modification </h3>
+    <div align="center">
+        <table class="criteriaFormTable">
+            <thead></thead>
+            <tbody>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Bill Plan Description&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{textarea value=description cols="43" rows="3"}}
+                    </td>
+                    <td> <span class="form-info"> (Optional)</span></td>
+                </tr>
+
+
+                {{#if plan._data.volume}} {{partial 'accounting/partials/volume-basic-form'}} {{/if}}
+                {{#if plan._data.speed}} {{partial 'accounting/partials/speed-basic-form'}} {{/if}}
+                {{#if plan._data.criteria}}  {{partial 'accounting/partials/criteria-bill-plans-form'}} {{/if}}
+
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Email Address&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{input type="text" value=email_address size="50" maxlength="64"}}
+                    </td>
+                    <td><span class="form-info"> (Optional)</span></td>
+                </tr>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Email Subject&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{input type="text" value=email_subject size="50" maxlength="64"}}
+                    </td>
+                    <td><span class="form-info"> (Optional)</span></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        <div id="crit-form-buttons">
+            <button  {{action 'edit' plan.id}}> Save </button>
+            <button {{action 'show_hide_edit_dialog' plan.id}}>Cancel</button>
+        </div>
+    </div>
+</div>

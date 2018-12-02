@@ -1,0 +1,19 @@
+<header class="sidebar-nav-header">
+    <h3>Exporters</h3>
+</header>
+{{#pinnable-navlist}}
+    {{#unless content.isLoading}}
+        {{#each exporter in content}}
+            <li class="navlist-item">
+                {{#link-to (query-params exporter=exporter.exporter_id) class="navlist-item-target"}}
+                    {{exporter.title}}<br>
+                    ID: {{exporter.exporter_id}}
+                {{/link-to}}
+            </li>
+            {{else}}
+                <div style="line-height: 2.4rem; text-align: center;">No exporters</div>
+        {{/each}}
+        {{else}}
+            <div style="line-height: 2.4rem; text-align: center;">loading ...</div>
+    {{/unless}}
+{{/pinnable-navlist}}

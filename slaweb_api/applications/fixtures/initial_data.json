@@ -1,0 +1,539 @@
+[
+   {
+        "model": "applications.Ports",
+        "pk": 1,
+        "fields": {
+            "name": "HTTP (ports 80 or 8080)",
+            "ports": "80;8080"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 2,
+        "fields": {
+            "name": "HTTPS (port 443)",
+            "ports": "443"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 3,
+        "fields": {
+            "name": "RTMP (Adobe Flash - port 1935)",
+            "ports": "1935"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 4,
+        "fields": {
+            "name": "Host-based email (ports 25+)",
+            "ports": "25;110;109;5108;5109;1109;10024;10025;3535;2525;587;465;995;143;220;993"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 5,
+        "fields": {
+            "name": "DNS and Bonjour (ports 53 or 5353)",
+            "ports": "53;5353"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 6,
+        "fields": {
+            "name": "FTP (ports 20 or 21)",
+            "ports": "20;21"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 7,
+        "fields": {
+            "name": "NETBIOS Name Service (port 137)",
+            "ports": "137"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 8,
+        "fields": {
+            "name": "SNMP (ports 161 or 162)",
+            "ports": "161;162"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 9,
+        "fields": {
+            "name": "TFTP (port 69)",
+            "ports": "69"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 10,
+        "fields": {
+            "name": "SSH, SCP, SFTP (ports 22 or 115)",
+            "ports": "22;115"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 11,
+        "fields": {
+            "name": "NETBIOS Datagram Service (port 138)",
+            "ports": "138"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 12,
+        "fields": {
+            "name": "NETBIOS Session Service (port 139)",
+            "ports": "139"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 13,
+        "fields": {
+            "name": "Microsoft-SQL-Server  (port 1433)",
+            "ports": "1433"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 14,
+        "fields": {
+            "name": "Microsoft-DS Active Directory & SMB  (port 445)",
+            "ports": "445"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 15,
+        "fields": {
+            "name": "Oracle Database   (ports 1521+)",
+            "ports": "1521;1528;2483;2484"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 16,
+        "fields": {
+            "name": "Kazaa (port 1214)",
+            "ports": "1214"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 17,
+        "fields": {
+            "name": "MSNP (port 1863)",
+            "ports": "1863"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 18,
+        "fields": {
+            "name": "Internet Relay Chat (IRC) (ports 194+)",
+            "ports": "194;994;6660;6661;6662;6663;6664;6665;6666;6667;6668;6669;6660;6679;6697"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 19,
+        "fields": {
+            "name": "MongoDB (port 27017)",
+            "ports": "27017"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 20,
+        "fields": {
+            "name": "Redis key-value data store (port 6379)",
+            "ports": "6379"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 21,
+        "fields": {
+            "name": "Ident (port 113)",
+            "ports": "113"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 22,
+        "fields": {
+            "name": "WHOIS and Finger protocol (ports 43 or 79)",
+            "ports": "43;79"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 22,
+        "fields": {
+            "name": "Gopher protocol (port 70)",
+            "ports": "70"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 23,
+        "fields": {
+            "name": "Network Time Protocol (port 123)",
+            "ports": "123"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 24,
+        "fields": {
+            "name": "RADIUS services (ports 1812+)",
+            "ports": "1812;1813;1645;1646;1700;2083;3799"
+        }
+    },
+    {
+        "model": "applications.Ports",
+        "pk": 25,
+        "fields": {
+            "name": "BOOTP, DHCP, DHCPv6 (ports 1812+)",
+            "ports": "67;68;647;546;547;847;135"
+        }
+    },
+          {
+        "model": "applications.Dscp",
+        "pk": 1,
+        "fields": {
+            "label": "AF11",
+            "dscp_class" : 10
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 2,
+        "fields": {
+            "label": "AF12",
+            "dscp_class" : 12
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 3,
+        "fields": {
+            "label": "AF13",
+            "dscp_class" : 14
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 4,
+        "fields": {
+            "label": "AF21",
+            "dscp_class" : 18
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 5,
+        "fields": {
+            "label": "AF22",
+            "dscp_class" : 20
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 6,
+        "fields": {
+            "label": "AF23",
+            "dscp_class" : 22
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 7,
+        "fields": {
+            "label": "AF31",
+            "dscp_class" : 26
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 8,
+        "fields": {
+            "label": "AF32",
+            "dscp_class" : 28
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 9,
+        "fields": {
+            "label": "AF33",
+            "dscp_class" : 30
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 10,
+        "fields": {
+            "label": "AF41",
+            "dscp_class" : 34
+        }
+    },
+      {
+        "model": "applications.Dscp",
+        "pk": 11,
+        "fields": {
+            "label": "AF42",
+            "dscp_class" : 36
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 12,
+        "fields": {
+            "label": "AF43",
+            "dscp_class" : 38
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 13,
+        "fields": {
+            "label": "CS1",
+            "dscp_class" : 8
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 14,
+        "fields": {
+            "label": "CS2",
+            "dscp_class" : 16
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 15,
+        "fields": {
+            "label": "CS3",
+            "dscp_class" : 24
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 16,
+        "fields": {
+            "label": "CS4",
+            "dscp_class" : 32
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 17,
+        "fields": {
+            "label": "CS5",
+            "dscp_class" : 40
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 18,
+        "fields": {
+            "label": "CS6",
+            "dscp_class" : 48
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 19,
+        "fields": {
+            "label": "CS7",
+            "dscp_class" : 56
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 20,
+        "fields": {
+            "label": "DEFAULT",
+            "dscp_class" : 0
+        }
+    },
+     {
+        "model": "applications.Dscp",
+        "pk": 21,
+        "fields": {
+            "label": "EF",
+            "dscp_class" : 46
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 1,
+        "fields": {
+            "label": "EF",
+            "protocol" : 46
+        }
+    },
+   {
+        "model": "applications.TransportProtocols",
+        "pk": 1,
+        "fields": {
+            "label": "TCP",
+            "protocol" : 6
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 2,
+        "fields": {
+            "label": "UDP",
+            "protocol" : 17
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 3,
+        "fields": {
+            "label": "SCTP",
+            "protocol" : 132
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 4,
+        "fields": {
+            "label": "GRE",
+            "protocol" : 47
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 5,
+        "fields": {
+            "label": "EIGRP",
+            "protocol" : 88
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 6,
+        "fields": {
+            "label": "UDPLite",
+            "protocol" : 136
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 7,
+        "fields": {
+            "label": "DCCP",
+            "protocol" : 33
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 8,
+        "fields": {
+            "label": "ICMP",
+            "protocol" : 1
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 9,
+        "fields": {
+            "label": "IGMP",
+            "protocol" : 2
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 10,
+        "fields": {
+            "label": "IPv6-ICMP",
+            "protocol" : 58
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 11,
+        "fields": {
+            "label": "CRUDP",
+            "protocol" : 127
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 12,
+        "fields": {
+            "label": "AH",
+            "protocol" : 51
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 13,
+        "fields": {
+            "label": "IPv6",
+            "protocol" : 41
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 14,
+        "fields": {
+            "label": "MOBILE",
+            "protocol" : 55
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 15,
+        "fields": {
+            "label": "IGP",
+            "protocol" : 9
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 16,
+        "fields": {
+            "label": "EGP",
+            "protocol" : 8
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 17,
+        "fields": {
+            "label": "MPLS-in-IP",
+            "protocol" : 137
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 18,
+        "fields": {
+            "label": "FC",
+            "protocol" : 133
+        }
+    },
+    {
+        "model": "applications.TransportProtocols",
+        "pk": 19,
+        "fields": {
+            "label": "ESP",
+            "protocol" : 50
+        }
+    }
+
+]

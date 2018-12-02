@@ -1,0 +1,45 @@
+<div class="evalForm">
+    <h4>Time Interval Settings: </h4>
+
+<table class="comp-users-module-table">
+    <tbody>
+    <tr>
+        <td class="column-label-basic-vol">
+            <span>Time interval type: &nbsp;</span>
+        </td>
+        <td class="cmp-users-td">
+            {{view "select" content=calcTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentCalcType}}
+        </td>
+        {{#if show_named}}
+        <td class="cmp-users-td">
+            {{view "select" content=namedSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentNamedSelect}}
+        </td>
+        {{/if}}
+        {{#if show_relative}}
+        <td class="cmp-users-td">
+            <span>Last </span>{{input value=currentRelativeValue size=5 maxlength=5}}
+            {{view "select" content=relativeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentRelativeSelect}}
+        </td>
+        {{/if}}
+
+        {{#if show_calendar}}
+        <td class="cmp-users-td">
+            <label>From&nbsp;:&nbsp;{{date-time-input time=startTime}}</label>
+        </td>
+        <td class="cmp-users-td">
+            <label>To&nbsp;:&nbsp;{{date-time-input time=endTime}}</label>
+        </td>
+        {{/if}}
+        <td class="">
+            <button  {{action "recompute"}}> Submit </button>
+        </td>
+        <td>
+            <button {{action "cancel"}}> Cancel </button>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+    {{#if fieldsError}}<span class="text-icon icon-16-left icon-error" >&nbsp;&nbsp;{{errorMessage}}</span>{{/if}}
+
+</div>

@@ -1,0 +1,10 @@
+[
+    {
+        "model": "core.exporter",
+        "pk": 1,
+        "fields": {
+            "title": "Sample exporter",
+            "exporter_id": 124
+        }
+    }
+]

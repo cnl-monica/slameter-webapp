@@ -1,0 +1,59 @@
+<fieldset>
+    <legend class="tool-section-header">Ports</legend>
+    <div class="tool-section-toolbox">
+        <div class="mini-tool" {{action "reset"}}>
+            <i class="icon-12 icon-history tooltip" title="restore"></i>
+        </div>
+        <div class="mini-tool" {{action "clear"}}>
+            <i class="icon-12 icon-close tooltip" title="clear"></i>
+        </div>
+    </div>
+    <div class="tool-subsection-header">
+        <i class="icon-12 icon-tab"></i>&nbsp;&nbsp;
+        {{#unboundIf forProvider}}
+            {{checkbox-button name="section" value="source_port" label="Sources" checked=providerDirs.0.checked}}&nbsp;&nbsp;
+            {{checkbox-button name="section" value="destination_port" label="Destinations" checked=providerDirs.1.checked}}&nbsp;&nbsp;
+            {{checkbox-button name="section" value="host_port" label="Nondirectional" checked=providerDirs.2.checked}}
+        {{else}}
+            {{radio-button name="port_section" value="source_port" label="Sources" selection=direction}}&nbsp;&nbsp;
+            {{radio-button name="port_section" value="destination_port" label="Destinations" selection=direction}}&nbsp;&nbsp;
+            {{radio-button name="port_section" value="host_port" label="Nondirectional" selection=direction}}
+        {{/unboundIf}}
+    </div>
+    {{#unboundIf forProvider}}
+        {{#each portDir in providerDirs}}
+            {{#if portDir.checked}}
+                <div class="tool-subsection has-title">
+                    <div class="tool-subsection-title">{{portDir.name}}</div>
+                    <div class="tool-subsection-header">
+                        <i class="icon-12 icon-filter"></i>&nbsp;&nbsp;
+                        {{radio-button name=portDir.direction value="range" label="Range" selection=portDir.type}}&nbsp;&nbsp;
+                        {{radio-button name=portDir.direction value="array" label="Ports" selection=portDir.type}}
+                    </div>
+                    {{#if portDir.rangeSelected}}
+                        <label>from port:&nbsp;{{iconed-formfield type="text" icon="power-cord" value=portDir.startPort}}</label><br>
+                        <label>to port:&nbsp;{{iconed-formfield type="text" icon="power-cord" value=portDir.endPort}}</label>
+                    {{/if}}
+                    {{#if portDir.arraySelected}}
+                        {{collection-input label="Port" icon="power-cord" collection=portDir.multiPort type="number"}}
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        <div class="tool-subsection">
+            <div class="tool-subsection-header">
+                <i class="icon-12 icon-filter"></i>&nbsp;&nbsp;
+                {{radio-button name="port_type" value="range" label="Range" selection=type}}&nbsp;&nbsp;
+                {{radio-button name="port_type" value="array" label="Ports" selection=type}}
+            </div>
+            {{#if rangeSelected}}
+                <label>from port:&nbsp;{{iconed-formfield type="text" icon="power-cord" value=startPort}}</label><br>
+                <label>to port:&nbsp;{{iconed-formfield type="text" icon="power-cord" value=endPort}}</label>
+            {{/if}}
+            {{#if arraySelected}}
+                {{collection-input label="IP" icon="power-cord" collection=multiPort type="number"}}
+            {{/if}}
+        </div>
+    {{/unboundIf}}
+</fieldset>

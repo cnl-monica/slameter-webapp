@@ -1,0 +1,253 @@
+%toolbox
+    //position: absolute
+    position: relative
+    float: right
+    //right: 0
+    //top: 0
+    height: $toolbuton-default-height
+    @include inline-block-nospace-container(".toolbox-button, .toolbox-separator")
+
+.module-toolbox, .page-toolbox, .nav-toolbox
+    @extend %toolbox
+
+.thin-toolbox
+    @extend  %toolbox
+    height: 2.4rem
+
+.toolbox-button
+    text-align: center
+    cursor: pointer
+    position: relative
+    height: 100%
+    width: 3.2rem
+    & + &
+        margin-left: 0.1rem
+    &.is-active, &:hover
+        background: $image-bg-pattern-white $white
+    +select-icons("& > ")
+        height: 100%
+        line-height: $toolbuton-default-height
+        width: $toolbutton-default-width
+
+    .module-toolbox > &
+        &.is-active
+            +select-icons
+                opacity: 0.5
+        +select-icons
+            opacity: 0.2
+            .module:hover &
+                opacity: 0.5
+            .module:hover &:hover
+                opacity: 0.9
+    .page-toolbox > &
+        color: $white
+        &.is-active, &:hover
+            color: $black
+            background: $image-bg-pattern-lightgreen transparentize($lightgreen, 0.1)
+            +select-icons
+                opacity: 1
+        +select-icons
+            opacity: 0.8
+    .nav-toolbox > &
+        color: $white
+        &.is-active, &:hover
+            color: $black
+            background: $image-bg-pattern-lightgreen transparentize($lightgreen, 0.1)
+        &.is-active
+            +select-icons
+                opacity: 1
+        +select-icons
+            opacity: 0.66
+            .sidebar-nav:hover &
+                opacity: 0.75
+            .sidebar-nav:hover &:hover
+                opacity: 1
+
+.toolbox-button-toggler
+    &.is-active
+        color: $darkyellow
+        +select-icons
+            opacity: 1 !important
+
+.toolbox-button-toolopener
+    .module-toolbox > &.is-active
+        @include arrow("down", $white, $midblue)
+    .page-toolbox > &.is-active, .nav-toolbox > &.is-active
+        @include arrow("down", $lightgreen, $midblue)
+
+.toolbox-separator
+    // line separating toggle tools from tool openers
+    width: 1px
+    height: 100%
+    vertical-align: top
+    @include box-sizing(border-box)
+    .module-toolbox > &
+        @include border(0 0.1rem 0 0, solid, $base-border-color)
+        @include border-image-gradient($base-border-color, transparentize($grey6, 0.33), $image-gradient-g4-g5)
+    .page-toolbox > &, .nav-toolbox > &
+        @include border(0 0.1rem 0 0, solid, $white)
+        @include border-image-gradient($white, $midgreen, $image-gradient-w-mg)
+
+
+%tool-container
+    position: relative
+    overflow: hidden
+    line-height: normal
+    @include transition(max-height 1.5s ease, border 0.5s ease)
+    @extend %box-shadow-top-bottom
+    form
+        position: relative
+
+
+.module-tool-container, .nav-tool-container
+    @extend %tool-container
+    @include border(0.1rem 0 0 0, solid, $base-border-color)
+    top: -0.1rem    // move up to the level of header border
+    margin-bottom: -0.1rem  // move up all the following elements!
+    max-height: 0
+    background: $image-bg-pattern-lightblue $lightblue
+    &.is-expanded
+        max-height: 150rem  // must be bigger than any tool content
+        border-color: $midblue
+        border-width: 0.1rem 0 0.1rem 0
+    .tool-content
+        max-height: 64rem
+
+.nav-tool-container
+    border-color: $darkgreen
+
+.section-tool-container
+    @extend %tool-container
+    @include border(0, solid, $midblue transparent $midblue transparent)
+    background: $image-bg-pattern-lightblue transparentize($lightblue, 0.66)
+    max-height: 0
+    &.is-expanded
+        max-height: 150rem  // must be bigger than any tool content
+        border-width: 0.1rem 0 0.1rem 0
+    .tool-content
+        max-height: 32rem
+    .l-util-bar.is-fixed &
+        border-bottom-width: 0 !important
+
+
+.tool-content
+    margin-right: 3.2rem
+    &.has-controls-down
+        margin-right: 0
+
+.tool-content-with-margin
+    @extend .tool-content
+    margin: $tool-padding
+
+%tool-description
+    //content specified in concrete tool
+    position: absolute
+    right: 0.4rem
+    text-align: right
+    @include font-small
+    font-weight: 300
+    color: rgba($midblue, 0.25)
+
+.tool
+    @include transition(margin-left 0.25s linear)  // for displaying tool-builder
+    &:before  // top-right corner tool description
+        @extend %tool-description
+        top: 0.4rem
+    .section-tool-container &
+        @include border(0 0.1rem, solid, rgba($midblue, 0.25))
+
+.filter-tool
+    min-height: 14.4rem
+
+.tool-section
+    $border-color: rgba($midblue, 0.25)
+
+    position: relative
+    display: inline-block
+    vertical-align: top
+    margin: 0.8rem 0.4rem 0
+    text-align: right
+    font-weight: 300
+    line-height: 2.4rem
+    fieldset
+        @include border(0.1rem 0 0 0, solid, rgba($midblue, 0.5))
+    .tool-section-header
+        color: $darkblue
+        line-height: $line-height
+        text-align: left
+        font-weight: 600
+        padding: 0 0.4rem
+    .tool-section-toolbox
+        font-size: 0
+        position: absolute
+        right: 0.8rem
+        height: 1.8rem
+        top: -0.1rem
+        border: 0.1rem solid $border-color
+        color: $midblue
+        background: $image-bg-pattern-lightblue $lightblue
+    .mini-tool
+        display: inline-block
+        width: 2rem
+        height: 1.8rem
+        line-height: 1.8rem
+        cursor: pointer
+        text-align: center
+        vertical-align: middle
+        &:hover
+            color: darken($midblue, 25%)
+    .icon-12
+        color: $midblue
+
+.tool-subsection
+    $border-color: rgba($midblue, 0.25)
+
+    position: relative
+    float: left
+    border-right: 0.1rem solid $border-color
+    margin-right: 0.4rem
+    margin-bottom: 0.4rem
+    padding-right: 0.4rem
+    &:last-child
+        border-right: none
+        margin-right: 0
+        padding-right: 0
+    &.has-title
+        padding-left: 1.8rem
+
+.tool-subsection-header
+    $border-color: rgba($midblue, 0.25)
+
+    margin-bottom: 0.4rem
+    text-align: left
+    border-bottom: 0.1rem solid $border-color
+
+.tool-subsection-title
+    position: absolute
+    top: 0.4rem
+    left: 1.8rem
+    font-size: $fontsize-small
+    color: $darkblue
+    text-align: right
+    @include transform-origin(0, 0)
+    @include rotate(90deg)
+
+
+.tool-controls-bottom
+    position: relative
+    border-top: 0.1rem solid rgba($midblue, 0.25)
+    text-align: right
+
+.tool-controls-right
+    @extend %top-bottom-stretch
+    float: right
+    width: 3.2rem
+    border-left: 0.1rem solid rgba($midblue, 0.25)
+    padding-top: 1.6rem
+    right: 0
+    bottom: 0
+    display: table-cell
+    vertical-align: bottom
+    & > .place-down
+        position: absolute
+        bottom: 0

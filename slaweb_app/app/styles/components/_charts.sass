@@ -1,0 +1,79 @@
+.chart
+    max-height: 30rem
+    height: 18rem
+    margin: 0.4rem
+    .flot-x-axis, .flot-y-axis
+        font-family: inherit
+    .flot-tick-label
+        @include font-small
+        font-family: inherit
+
+.chart-overview
+    height: 4.8rem
+    margin: 0.4rem
+
+.flot-ilegend
+    @include inline-block-nospace-container(".series", $fontsize-small)
+    line-height: 1.6rem
+    //background: url($image-bg-pattern-grey6) $grey6
+    //border: 0.1rem solid $grey5
+    text-align: right
+    margin: 0.4rem
+    //padding: 0 1.6rem
+    //display: inline-block
+    &.is-interactive .series
+        cursor: pointer
+        &:hover
+            background: url($image-bg-pattern-grey5) $grey5
+            color: $black
+            .symbol
+                border-color: $grey3
+    .series
+        padding: 0.4rem 0.8rem
+        color: $grey2
+        @include transition(opacity 0.25s ease)
+        &.is-inactive
+            opacity: 0.5
+            &:hover
+                opacity: 1
+        .label
+            display: inline-block
+            vertical-align: middle
+        .symbol
+            display: inline-block
+            padding: 0.1rem
+            position: relative
+            vertical-align: middle
+            width: 0.8rem
+            height: 0.8rem
+            border: 0.1rem solid $base-border-color
+            background-clip: content-box
+            +border-radius(0.8rem)
+            margin-right: 0.4rem
+
+// Tooltipster theme for flot tooltips
+.flot-tooltip
+    &.animate-position
+        @include transition(top 0.5s ease, left 0.5s ease, opacity 0.25s linear !important)
+    background: lighten($midblue, 10%)
+    border: 0.1rem solid darken($midblue, 5%)
+    @include border-radius
+    color: $white
+    @include box-shadow(0 0 0.4rem rgba($darkblue, 0.33))
+    .tooltipster-content
+        @include font-base
+        line-height: 1.3
+        padding: 0.8rem
+        overflow: hidden
+.whole-pie
+    padding: 5px
+    overflow: auto
+    padding-bottom: 20px
+
+.pie-chart
+    width: 40%
+
+
+.pie-legend
+    width: 60%
+    float: right

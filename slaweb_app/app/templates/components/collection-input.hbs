@@ -1,0 +1,15 @@
+<div class="collection-controls">
+    <label>{{iconed-formfield type="text" icon=icon value=newItem inputError=valueError}}</label><br>
+    <button {{action "add" newItem}}>add</button>
+    <button {{action "clear"}}>clear</button>
+</div>
+{{#custom-scrollbar theme="blue-no-overlay-no-hide" class="collection-container" viewName='scrollbarView'}}
+    {{#each item in collection}}
+        <div class="collection-item">
+            <i class="icon-12 icon-close" {{action "remove" item}}></i>
+            {{item}}
+        </div>
+    {{else}}
+        <div class="empty-collection">Empty</div>
+    {{/each}}
+{{/custom-scrollbar}}

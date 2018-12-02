@@ -1,0 +1,30 @@
+{{#if expanded}}
+    {{#if formIsActive}}
+            {{partial 'accounting/partials/criteria-evaluation-form'}}
+    {{else}}
+    {{/if}}
+        {{#if model.evaluatedData.data.billing_data}}
+                {{criteria-chart data=data}}
+        {{/if}}
+
+    {{#if model.evaluatedData.data}}
+        <div class="module-header"><h3>Usage-Based Billing for Accounting Criteria</h3></div>
+            <br>
+        <div class="content">
+            {{billing-information
+            two_tariff=two_tariff
+            timeFrom=timeFrom
+            timeTo=timeTo
+            fstTimeTariff=fstTimeTariff
+            sndTimeTariff=sndTimeTariff
+            billingtabledata=billingtabledata
+            total_sum=total_sum
+            isAdmin=isAdmin
+            user=user
+            tagName='div'}}
+        {{partial 'accounting/partials/billing-pdf-section'}}
+
+        </div>
+
+    {{/if}}
+{{/if}}

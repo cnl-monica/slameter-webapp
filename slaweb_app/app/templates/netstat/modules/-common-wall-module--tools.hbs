@@ -1,0 +1,5 @@
+{{#filter-tool apply='applyFilter' restore='restoreFilter' load="loadFilter" save="saveFilter" savedQueries=savedQueries}}
+    {{time-filter inputValue=inputQuery.time outputValue=query.time}}
+    {{ip-filter inputValue=inputQuery.ips outputValue=query.ips user=session.user}}
+    {{port-filter inputValue=inputQuery.ports outputValue=query.ports user=session.user}}
+{{/filter-tool}}

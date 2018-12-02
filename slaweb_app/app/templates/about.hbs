@@ -1,0 +1,37 @@
+<div class="l-utilbar">
+    <div class="l-constrained">
+        <div class="scrolled-slameter-branding is-hidden">
+            <div class="branding-icon"></div>
+            <div class="branding-header">SLAmeter</div>
+        </div>
+        <nav class="sections-nav">
+            <ul class="horizontal-navlist">
+                <li class="navlist-item">
+                    {{#link-to 'about' class="navlist-item-target"}}
+                        <span>SLAmeter</span>
+                    {{/link-to}}
+                </li>
+                <li class="navlist-item">
+                    {{#link-to 'about.monica' class="navlist-item-target"}}
+                        <span>MONICA</span>
+                    {{/link-to}}
+                </li>
+                <li class="navlist-item">
+                    {{#link-to 'about.architecture' class="navlist-item-target"}}
+                        <span>{{#if langSk}}Architektúra nástroja SLAmeter{{else}}Architecture of the SLAmeter tool{{/if}}</span>
+                    {{/link-to}}
+                </li>
+                {{!--
+                For Future Use:
+                <li class="navlist-item">
+                    {{#link-to 'FFU' class="navlist-item-target"}}
+                        <span>FFU</span>
+                    {{/link-to}}
+                </li>
+                --}}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{{outlet}}

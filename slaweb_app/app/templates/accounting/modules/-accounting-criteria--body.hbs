@@ -1,0 +1,54 @@
+{{#if expanded}}
+{{#unless criteria.isLoading}}
+    {{#if deleteMessageIsActive }}
+        <div class="delete-message">
+            <h4>Are you sure ?</h4>
+            <p>Are you sure you want to delete the selected criteria?</p>
+            <button {{action 'deleteButtonIsSwitched'}}>
+            Yes, I'm sure
+            </button>
+            <button {{action 'cancel'}}>
+            Cancel
+            </button>
+        </div>
+    {{else}}
+    {{/if}}
+    {{#if formIsActive}}
+        {{partial 'accounting/partials/accounting-criteria-form'}}
+    {{else}}
+    {{/if}}
+
+        {{#if contentData}}
+        <div align="center">
+        <table id="user-criteria-table" class="data-table" data-selection="2" data-role="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Priority</th>
+                <th>Source IP Addresses</th>
+                <th>Destination IP Addresses</th>
+                <th>Protocol</th>
+                <th>Source Ports</th>
+                <th>Destination Ports</th>
+                <th>DSCP</th>
+                <th>Multicast</th>
+                <th>Rates</th>
+                {{#if isProvider }}
+                    <th colspan="2">Mgmt</th>
+                {{/if}}
+            </tr>
+        </thead>
+        <tbody>
+        {{#each criteria in contentData}}
+            <tr>
+            {{partial 'accounting/partials/accounting-criteria-info'}}
+            </tr>
+        {{/each}}
+        </tbody>
+        </table>
+        </div>
+        {{/if}}
+{{else}}
+
+{{/unless}}
+{{/if}}

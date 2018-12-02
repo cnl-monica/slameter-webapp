@@ -1,0 +1,139 @@
+.iconed-formfield
+    @include inline-block-nospace-container("input, i", $fontsize-small)
+    display: inline-block
+    border-color: $midblue // this color is inherited by input and icon
+    white-space: nowrap
+    +select-icons(">")
+        @include border(0.1rem 0.1rem 0.1rem 0, solid, inherit)
+        width: 2.4rem
+        height: 2.4rem
+        text-align: center
+        line-height: 2.2rem
+        background-color: rgba($midblue, 0.5)
+        @include border-radius(0 $default-border-radius $default-border-radius 0)
+        @include box-sizing(border-box)
+        color: $grey7
+        @include transition(all 0.25s linear)
+        vertical-align: top
+    > input
+        border-color: inherit
+        @include border-radius($default-border-radius 0 0 $default-border-radius)  // only left-top and left-bottom corners
+    +select-icons("> input:focus +")
+        border-color: $darkyellow
+        background-color: rgba($darkyellow, 0.5)
+        color: $white
+
+.checkbox, .radio
+    position: relative
+    display: inline-block
+    & > *
+        cursor: pointer
+    input[type="checkbox"], input[type="radio"]
+        opacity: 0
+        position: absolute
+        left: 0
+        top: 0.2rem
+        width: 1.6rem
+        height: 1.6rem
+        z-index: 1
+        +select-icons("&:focus +")
+            border-color: $darkyellow
+            color: $midyellow
+        +select-icons("&:not(:checked) +", ":before")
+            opacity: 0
+
+    +select-icons
+        border: 1px solid $midblue
+        @include box-sizing(border-box)
+        height: 1.6rem
+        width: 1.6rem
+        text-align: center
+        opacity: 1
+        color: darken($midblue, 5%)
+        background: linear-gradient(to bottom, $grey7 0%, $grey6 100%) $grey7
+        @include box-shadow(inset 0 0 0.2rem $grey5)
+        cursor: pointer
+        &:hover
+            opacity: 1 !important
+        &:before
+            line-height: 1.4rem
+
++select-icons(".checkbox > label >")
+    @include border-radius
++select-icons(".radio > label >")
+    @include border-radius(1rem)
+
+
+.flat-button
+    border: none
+    @include border-radius(0)
+    background: none
+    box-shadow: none
+    color: $midblue
+    width: 2.4rem
+    height: 2.4rem
+    display: inline-block
+    margin: 0
+    padding: 0.4rem
+    &:hover
+        background: $image-bg-pattern-white $white
+        color: darken($midblue, 10%)
+    &:active
+        top: 0
+        left: 0
+        @include scale(0.95)
+
+
+.collection-input
+    .collection-controls
+        float: left
+    .collection-container
+        float: right
+        text-align: left
+        border: 0.1rem solid rgba($midblue, 0.5)
+        @include box-shadow(inset 0 0 0.2rem rgba($grey4, 0.5))
+        background: darken(rgba($midblue, 0.1), 10%)
+        max-width: 12.8rem
+        min-height: 2.4rem
+        max-height: 10rem
+        margin-left: 0.4rem
+    .collection-item
+        //@include border-radius
+        @include font-small
+        line-height: 1.6rem
+        border-right: 0.1rem solid rgba($midblue, 0.5)
+        //@include box-shadow(0 0 0.2rem rgba($grey4, 0.5))
+        padding: 0.4rem
+        background: $image-bg-pattern-lightblue $lightblue
+        //margin: 0.2rem
+        & ~ .collection-item
+            border-top: 0.1rem solid rgba($midblue, 0.5)
+        +select-icons(">")
+            margin: 0 0.2rem
+            color: $midblue
+            cursor: pointer
+            &:hover
+                color: darken($midblue, 15%)
+    .empty-collection
+        @include font-small
+        margin-left: 1.6rem
+        color: $grey2
+
+
+input.has-error
+    background-color: transparentize($midred, 0.75)
+
+
+.input-error-theme
+    &.animate-position
+        @include transition(top 0.5s ease, left 0.5s ease, opacity 0.25s linear !important)
+    background: lighten($midred, 10%)
+    border: 0.1rem solid darken($midred, 5%)
+    @include border-radius
+    color: $white
+    @include box-shadow(0.1rem 0.1rem 0 rgba($darkred, 0.33))
+    .tooltipster-content
+        @include font-base
+        line-height: 1.3
+        padding: 0.4rem
+        overflow: hidden

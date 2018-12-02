@@ -1,0 +1,19 @@
+<div class="l-content-wrapper-centered l-constrained">
+    {{#slameter-plate title="Login"}}
+        {{#unless controller.session.isAuthenticated}}
+            <form class="login-form" {{action "authenticate" on="submit"}}>
+                <label for="email">email:</label>&nbsp;
+                {{input id="email" placeholder="enter email" value=username error=emailError autofocus="autofocus"}}<br>
+                <label for="password">password:</label>&nbsp;
+                {{input id="password" placeholder="enter password" type="password" value=password error=passwordError}}<br>
+                <input type="submit" value="Login">
+            </form>
+        {{else}}
+            <div class="login-form" {{action "logout" on="submit"}}>
+                <h3>You are logged in</h3>
+                <p style="text-align: center">{{link-to 'Go to index.' 'apps'}}</p>
+                <input type="submit" value="Logout">
+            </div>
+        {{/unless}}
+    {{/slameter-plate}}
+</div>

@@ -1,0 +1,114 @@
+<div class="criteriaForm">
+    <h3 id="criteriaFormH3">Billing Plan {{#if edit}}  Modification {{else}} Creation {{/if}}</h3>
+    <div align="center">
+        <table class="criteriaFormTable">
+            <thead></thead>
+            <tbody>
+
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Bill Plan Name&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{input type="text" value=name size="50" maxlength="64"}}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Bill Plan Description&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{textarea value=description cols="43" rows="3"}}
+                    </td>
+                    <td> <span class="form-info"> (Optional)</span></td>
+                </tr>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>User&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{view "select" content=user_select optionValuePath="content.val" optionLabelPath="content.label" value=currentUser }}
+                    </td>
+                    <td></td>
+                </tr>
+                <tr class="basic-tr">
+                   <td class="column-label-basic-vol">
+                       <span>Billing type&nbsp;:</span>
+                   </td>
+                   <td class="column-value-select">
+                        {{view "select" content=billTypeSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentBillType }}
+
+                       <div class="billTypeMethodDesc">
+                               <span class="bl-link-desc">
+                                    {{#if criteria_desc}}Billing is based on <br> User-specific Criteria.{{/if}}
+                                    {{#if volume_form}}Billing is based on total amount <br> of downloaded/uploaded data.{{/if}}
+                                    {{#if speed_form}}Billing is based on 95th percentile <br> calculation of used bandwidth.{{/if}}
+                               </span>
+                               <br>
+                               {{#if criteria_desc}}
+                               <span class="bl-link-desc">
+                               User Criteria are available</span>
+                                {{#link-to 'accounting.criteria-billing' (query-params accuser=currentUser action="list" criteria='0')}}
+                                    <span class="bl-link">here</span>
+                                {{/link-to}}
+                               {{/if}}
+                       </div>
+                   </td>
+
+                   <td>
+
+
+                   </td>
+               </tr>
+                {{#if volume_form}} {{partial 'accounting/partials/volume-basic-form'}} {{/if}}
+                {{#if speed_form}} {{partial 'accounting/partials/speed-basic-form'}} {{/if}}
+                {{#unless speed_form}} {{#unless volume_form}}  {{partial 'accounting/partials/criteria-bill-plans-form'}} {{/unless}} {{/unless}}
+
+                <tr class="basic-tr">
+                   <td class="column-label-basic-vol">
+                       <span>Billing Period	&nbsp;:</span>
+                   </td>
+                   <td class="column-value-select">
+                        {{view "select" content=generationPeriodSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentGenerationPeriod }}
+                   </td>
+               </tr>
+                <tr class="basic-tr">
+                   <td class="column-label-basic-vol">
+                       <span>Bill Genaration Date&nbsp;:</span>
+                   </td>
+                   <td class="column-value-select">
+                        {{#if quarterly}}{{view "select" content=generationMonthsSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentGenerationMonths }}{{/if}}
+                       &nbsp;
+                       {{view "select" content=generationDateSelect optionValuePath="content.val" optionLabelPath="content.label" value=currentGenerationDate }}
+                   </td>
+               </tr>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Email Address&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{input type="text" value=email_address size="50" maxlength="64"}}
+                    </td>
+                    <td><span class="form-info"> (Optional)</span></td>
+                </tr>
+                <tr class="basic-tr">
+                    <td class="column-label">
+                        <span>Email Subject&nbsp;:</span>
+                    </td>
+                    <td class="column-value">
+                        {{input type="text" value=email_subject size="50" maxlength="64"}}
+                    </td>
+                    <td><span class="form-info"> (Optional)</span></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+        <div id="crit-form-buttons">
+            <button  {{action "create"}}> Create </button>
+            <button {{action "cancel"}}>Cancel</button>
+        </div>
+    </div>
+</div>

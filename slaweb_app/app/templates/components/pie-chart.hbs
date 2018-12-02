@@ -1,0 +1,34 @@
+<div class="whole-pie">
+    <div class="pie-legend" align="center">
+        <table class="pie-chart-table" align="center">
+            <thead>
+                <tr>
+                    <th class="pie-legend-label-th"><b>Application</b> </th>
+                    <th class="pie-legend-value">Ingress Data</th>
+                    <th class="pie-legend-value">Egress Data</th>
+                    <th class="pie-legend-value">Sum</th>
+                    <th class="pie-percent-th"><b>Percent</b> </th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each item in data}}
+                <tr {{action "highlight_part" item on="mouseEnter" }}>
+                    <td class="pie-label-td">{{as-data item.label}}</td>
+                    <td class="pie-legend-value"> {{as-data item.download}} </td>
+                    <td class="pie-legend-value"> {{as-data item.upload}} </td>
+                    <td class="pie-legend-value"> {{as-data item.data}} </td>
+                    <td class="pie-percent-td"> {{item.procent}}% </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="pie-chart">
+        <div class="flot-pie-legend" align="center">
+        </div>
+        <div class="chart">
+        </div>
+    </div>
+</div>

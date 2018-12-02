@@ -1,0 +1,49 @@
+.menu
+    @extend %list-reset
+    font-weight: 300
+.menu-item
+    line-height: inherit
+.menu-item-target
+    line-height: inherit
+    padding: 0 0.8rem
+    display: inline-block
+
+.horizontal-menu
+    @extend .menu
+    @include inline-block-nospace-container(".menu-item")
+    > .menu-item + .menu-item
+        margin-left: 0.1rem
+
+// menu in topbar
+.main-menu
+    float: right
+    color: $lightgreen
+    height: $topbar-height
+    line-height: $topbar-height
+    > .menu-item
+        &:hover
+            background: $image-bg-pattern-midgreen $midgreen
+            color: $white
+
+.dropdown-menu
+    @extend .menu
+    display: none
+    .menu-item
+        margin: 0.2rem 0
+    .menu-item-target
+        display: block
+        padding: 0.4rem 1.6rem
+        &:hover
+            color: $grey1
+            background: $image-bg-pattern-lightblue $lightblue
+    .tooltipster-base &
+        display: block
+    .menu-item
+        margin-left: 0 !important
+        display: block
+        padding: 0
+
+.dropdown-menu-green
+    @extend .dropdown-menu
+    .menu-item-target:hover
+        background: $image-bg-pattern-lightgreen $lightgreen

@@ -1,0 +1,18 @@
+<p class="big-text">Accounting Entity:</p>
+    <div class="bill-info-section">
+        <div class="left-billing">
+                <div class="wrapper"><div class="static" ><p class="atribute-text">ID,Name:</p></div><div class="texts"><p class="atribute2-text">{{ user.id }},{{ user.name }}</p></div></div>
+                <div class="wrapper"><div class="static" ><p class="atribute-text">Organization:</p></div>    <div class="texts"><p class="atribute2-text">{{ user.organization }}</p></div></div>
+                <div class="wrapper"><div class="static" ><p class="atribute-text">IPv4 Addresses:</p></div>  <div class="texts"><p class="atribute2-text">{{split-string user.ip_addresses splitter=';'}}</p></div></div>
+                    <br />
+                </div >
+                <div class="right-billing">
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Cell Phone:</p></div><div class="texts"><p class="atribute2-text">{{ user.mobile }}</p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">E-mail:</p></div>    <div class="texts"><p class="atribute2-text">{{ user.email }}</p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">MAC Addresses:</p></div>  <div class="texts"><p class="atribute2-text">{{split-string user.mac_addresses splitter=';'}}</p></div></div>
+                    <div class="wrapper"><div class="static" ><p class="atribute-text">Account-No:</p></div>  <div class="texts"><p class="atribute2-text">{{ user.accountNo}}</p></div></div>
+                    <br />
+                </div >
+                <br>
+    </div>
+<br>

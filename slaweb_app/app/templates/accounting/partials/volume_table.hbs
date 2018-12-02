@@ -1,0 +1,20 @@
+                <table class="bill-table" data-selection="2">
+                <thead>
+                        <th>Category</th>
+                        <th>Total</th>
+                        <th>Costs</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="bold-td basic-table-td">Download - In</td>
+                    <td class="basic-table-td">{{as-data evaluatedData.octet_total_count_download}}</td>
+                    <td rowspan="2" class="bold-td basic-table-td">{{evaluatedData.total_cost}} EUR</td>
+                </tr>
+                <tr>
+                    <td class="bold-td basic-table-td">Upload - Out</td>
+                    <td class="basic-table-td">{{as-data evaluatedData.octet_total_count_upload}}</td>
+
+                </tr>
+                </tbody>
+
+                </table>

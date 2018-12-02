@@ -1,0 +1,108 @@
+<table class="bill-info-table" align="center">
+    <thead></thead>
+    <tbody>
+    {{#if plan._data.criteria}}
+
+                                <tr>
+                                    <td>User Criteria are available</td>
+                                    <td class="bill-info-table-value">
+                                        {{#if isProvider}}
+                                            {{#link-to 'accounting.criteria-billing' (query-params accuser=plan._data.user_id action="list" criteria='0')}}
+                                                <span class="bl-link">&nbsp;&nbsp;Here</span>
+                                            {{/link-to}}
+                                        {{else}}
+                                            {{#link-to 'accounting.criteria-billing'}}
+                                                <span class="bl-link">&nbsp;&nbsp;Here</span>
+                                            {{/link-to}}
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Include double time tariff</td>
+                                    <td class="bill-info-table-value">: {{#if plan.double_tt_criteria}}Yes{{else}}No{{/if}}</td>
+                                </tr>
+                                {{#if plan.double_tt_criteria}}
+                                <tr>
+                                    <td>1st Tariff Time</td>
+                                    <td class="bill-info-table-value">: {{plan.hour_from_criteria}}:00 - {{plan.hour_to_criteria}}:00</td>
+                                </tr>
+                                <tr>
+                                    <td>2nd Tariff Time</td>
+                                    <td class="bill-info-table-value">: {{plan.hour_to_criteria}}:00 - {{plan.hour_from_criteria}}:00</td>
+                                </tr>
+
+                            {{/if}}
+    {{/if}}
+
+    {{#if plan._data.volume}}
+
+            {{#if plan.additional_tariff}}
+                <tr>
+                    <td>
+                    EUR {{plan.base_tariff}} for the first {{as-data plan.base_amount}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>EUR {{plan.additional_tariff}} for every increment of {{as-data plan.additional_amount}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td>EUR {{plan.base_tariff}} for the every {{as-data plan.base_amount}}
+                    </td>
+                </tr>
+            {{/if}}
+    {{/if}}
+
+    {{#if plan._data.speed}}
+
+             {{#if plan.additional_tariff}}
+                <tr>
+                    <td>
+                    EUR {{plan.base_tariff}} for the first {{as-bps-data plan.base_amount}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>EUR {{plan.additional_tariff}} for every increment of {{as-bps-data plan.additional_amount}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td>EUR {{plan.base_tariff}} for the every {{as-bps-data plan.base_amount}}
+                    </td>
+                </tr>
+            {{/if}}
+
+
+
+    {{/if}}
+                {{#unless plan._data.criteria}}
+                <tr>
+                    <td class="address-td-label">Calculation type</td>
+                    <td>: {{plan._data.calc_type.label}}
+                    {{#dropdown-menu tagName="div"}}
+
+                                            <div class="dropdown-trigger">
+                                                <span class="table-button">&nbsp;&nbsp;Details</span>
+                                            </div>
+                                                {{#view class="dropdown-menu-green" viewName="dropdownContent"}}
+                                                    <table>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="bill-desc-bubbled-field">
+                                                                {{plan._data.calc_type.desc}}
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                {{/view}}
+
+                                        {{/dropdown-menu}}
+
+
+
+                    </td>
+                </tr>
+                {{/unless}}
+    </tbody>
+    </table>
